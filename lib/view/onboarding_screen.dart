@@ -49,6 +49,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     double width = SizeConfig.screenW!;
     double height = SizeConfig.screenH!;
 
+    // Calculate the font sizes based on the screen width
+    double titleFontSize = (width <= 550) ? 30 : 35;
+    double descFontSize = (width <= 550) ? 17 : 25;
+    double buttonTextFontSize = (width <= 550) ? 13 : 17;
+
     return Scaffold(
       backgroundColor: colors[_currentPage],
       body: SafeArea(
@@ -72,7 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: TextStyle(
                             fontFamily: "Mulish",
                             fontWeight: FontWeight.bold,
-                            fontSize: (width <= 550) ? 30 : 35,
+                            fontSize: titleFontSize,
                             color: Colors.white,
                           ),
                         ),
@@ -82,7 +87,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           style: TextStyle(
                             fontFamily: "Mulish",
                             fontWeight: FontWeight.normal,
-                            fontSize: (width <= 550) ? 17 : 25,
+                            fontSize: descFontSize,
                             color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
@@ -131,7 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             elevation: 0,
                             textStyle: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: (width <= 550) ? 13 : 17,
+                              fontSize: buttonTextFontSize,
                             ),
                           ),
                         ),
@@ -163,8 +168,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     horizontal: 30, vertical: 20)
                                 : const EdgeInsets.symmetric(
                                     horizontal: 30, vertical: 25),
-                            textStyle:
-                                TextStyle(fontSize: (width <= 550) ? 13 : 17),
+                            textStyle: TextStyle(fontSize: buttonTextFontSize),
                           ),
                         ),
                       ],
