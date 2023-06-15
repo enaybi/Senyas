@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   child: SvgPicture.asset(
-                    'assets/book.svg',
+                    'assets/camera.svg',
                     width: 45,
                     height: 45,
                   ),
@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   child: SvgPicture.asset(
-                    'assets/chat.svg',
+                    'assets/chatpad.svg',
                     width: 45,
                     height: 45,
                   ),
