@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:camera/camera.dart';
 import 'package:senyas/view/home.dart';
 import 'package:senyas/view/onboarding_screen.dart';
