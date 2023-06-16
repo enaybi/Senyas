@@ -1,33 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senyas/view/onboarding_contents.dart';
-
-class SizeConfig {
-  static late MediaQueryData _mediaQueryData;
-  static late double screenWidth;
-  static late double screenHeight;
-  static late double blockSizeHorizontal;
-  static late double blockSizeVertical;
-
-  static late double _safeAreaHorizontal;
-  static late double _safeAreaVertical;
-  static late double safeBlockHorizontal;
-  static late double safeBlockVertical;
-
-  void init(BuildContext context) {
-    _mediaQueryData = MediaQuery.of(context);
-    screenWidth = _mediaQueryData.size.width;
-    screenHeight = _mediaQueryData.size.height;
-    blockSizeHorizontal = screenWidth / 100;
-    blockSizeVertical = screenHeight / 100;
-
-    _safeAreaHorizontal =
-        _mediaQueryData.padding.left + _mediaQueryData.padding.right;
-    _safeAreaVertical =
-        _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
-    safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
-    safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
-  }
-}
+import 'package:senyas/view/size_config.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -38,7 +11,6 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late PageController _controller;
-  double? screenHeight;
 
   @override
   void initState() {
@@ -71,11 +43,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
-    screenHeight = SizeConfig.screenHeight;
-    double titleFontSize = SizeConfig.safeBlockVertical * 3.75;
-    double descFontSize = SizeConfig.safeBlockVertical * 2.25;
-    double buttonTextFontSize = SizeConfig.safeBlockVertical * 1.875;
+    SizeConfig().init(context); // Initialize SizeConfig
+
+    double titleFontSize = SizeConfig.textMultiplier * 3;
+    double descFontSize = SizeConfig.textMultiplier * 2;
+    double buttonTextFontSize = SizeConfig.textMultiplier * 1.5;
 
     return Scaffold(
       backgroundColor: colors[_currentPage],
@@ -91,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 itemCount: contents.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 5),
+                    padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 5),
                     child: Column(
                       children: [
                         Text(
@@ -116,13 +88,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
-                          height: screenHeight! >= 840
-                              ? SizeConfig.safeBlockVertical * 7.5
-                              : SizeConfig.safeBlockVertical * 3.75,
+                          height: SizeConfig.blockSizeVertical * 6,
                         ),
                         Image.asset(
                           contents[i].image,
-                          height: SizeConfig.safeBlockVertical * 25,
+                          height: SizeConfig.imageSizeMultiplier * 25,
                         ),
                       ],
                     ),
@@ -145,7 +115,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 5),
+                    padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -189,8 +159,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             elevation: 0,
                             padding: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.safeBlockHorizontal * 20,
-                              vertical: SizeConfig.safeBlockVertical * 6.25,
+                              horizontal: SizeConfig.blockSizeHorizontal * 20,
+                              vertical: SizeConfig.blockSizeVertical * 3,
                             ),
                             textStyle: TextStyle(fontSize: buttonTextFontSize),
                           ),

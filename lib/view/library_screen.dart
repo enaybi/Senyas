@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../model/library_content.dart';
 import 'chatpad.dart';
 import 'drawer.dart';
-import 'library_alphabeth_details_screen.dart';
+import 'library_content.dart';
+import 'library_details_screen.dart';
 import 'look_screen.dart';
 
 class LibraryScreen extends StatelessWidget {
@@ -101,7 +101,7 @@ class LibraryScreen extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                LibraryAlphabethDetailsScreen(
+                                                LibraryDetailsScreen(
                                               category:
                                                   libraryContents[index].title,
                                             ),
