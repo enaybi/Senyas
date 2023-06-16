@@ -1,6 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:senyas/view/size_config.dart';
 import 'package:senyas/view/onboarding_contents.dart';
+
+class SizeConfig {
+  static late MediaQueryData _mediaQueryData;
+  static late double screenWidth;
+  static late double screenHeight;
+  static late double blockSizeHorizontal;
+  static late double blockSizeVertical;
+
+  static late double _safeAreaHorizontal;
+  static late double _safeAreaVertical;
+  static late double safeBlockHorizontal;
+  static late double safeBlockVertical;
+
+  void init(BuildContext context) {
+    _mediaQueryData = MediaQuery.of(context);
+    screenWidth = _mediaQueryData.size.width;
+    screenHeight = _mediaQueryData.size.height;
+    blockSizeHorizontal = screenWidth / 100;
+    blockSizeVertical = screenHeight / 100;
+
+    _safeAreaHorizontal =
+        _mediaQueryData.padding.left + _mediaQueryData.padding.right;
+    _safeAreaVertical =
+        _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
+    safeBlockHorizontal = (screenWidth - _safeAreaHorizontal) / 100;
+    safeBlockVertical = (screenHeight - _safeAreaVertical) / 100;
+  }
+}
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -11,6 +38,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late PageController _controller;
+  double? screenHeight;
 
   @override
   void initState() {
@@ -19,22 +47,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   int _currentPage = 0;
-  List colors = const [
+  List<Color> colors = const [
     Color.fromARGB(255, 127, 216, 189),
     Color.fromARGB(255, 127, 216, 189),
     Color.fromARGB(255, 127, 216, 189),
   ];
 
   AnimatedContainer _buildDots({
-    int? index,
+    required int index,
   }) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(
-          Radius.circular(50),
-        ),
-        color: Color(0xFF000000),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(50),
+        color: _currentPage == index ? Color(0xFF000000) : Colors.transparent,
       ),
       margin: const EdgeInsets.only(right: 5),
       height: 10,
@@ -46,13 +72,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    double width = SizeConfig.screenW!;
-    double height = SizeConfig.screenH!;
-
-    // Calculate the font sizes based on the screen width
-    double titleFontSize = (width <= 550) ? 30 : 35;
-    double descFontSize = (width <= 550) ? 17 : 25;
-    double buttonTextFontSize = (width <= 550) ? 13 : 17;
+    screenHeight = SizeConfig.screenHeight;
+    double titleFontSize = SizeConfig.safeBlockVertical * 3.75;
+    double descFontSize = SizeConfig.safeBlockVertical * 2.25;
+    double buttonTextFontSize = SizeConfig.safeBlockVertical * 1.875;
 
     return Scaffold(
       backgroundColor: colors[_currentPage],
@@ -68,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 itemCount: contents.length,
                 itemBuilder: (context, i) {
                   return Padding(
-                    padding: const EdgeInsets.all(40.0),
+                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 5),
                     child: Column(
                       children: [
                         Text(
@@ -93,11 +116,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
-                          height: (height >= 840) ? 60 : 30,
+                          height: screenHeight! >= 840
+                              ? SizeConfig.safeBlockVertical * 7.5
+                              : SizeConfig.safeBlockVertical * 3.75,
                         ),
                         Image.asset(
                           contents[i].image,
-                          height: SizeConfig.blockV! * 40,
+                          height: SizeConfig.safeBlockVertical * 25,
                         ),
                       ],
                     ),
@@ -120,7 +145,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(30),
+                    padding: EdgeInsets.all(SizeConfig.safeBlockHorizontal * 5),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -163,11 +188,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             elevation: 0,
-                            padding: (width <= 550)
-                                ? const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 20)
-                                : const EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 25),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: SizeConfig.safeBlockHorizontal * 20,
+                              vertical: SizeConfig.safeBlockVertical * 6.25,
+                            ),
                             textStyle: TextStyle(fontSize: buttonTextFontSize),
                           ),
                         ),
