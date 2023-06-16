@@ -72,9 +72,9 @@ flutter:
   assets:
     - assets/
     - assets/tflite/
+    - assets/classes
     - assets/classes_content/alphabets/
-    - assets/classes/
-    - assets/numbers/
+    - assets/classes_content/numbers/
     - assets/family_tree/
   # To add assets to your application, add an assets section, like this:
   # assets:
