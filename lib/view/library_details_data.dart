@@ -9,109 +9,201 @@ final Map<String, List<LibraryDetail>> libraryDetails = {
   'Alphabets': [
     LibraryDetail(
       title: 'A',
-      imagePath: 'A.png',
+      imagePath: 'assets/classes_content/alphabets/A.png',
     ),
     LibraryDetail(
       title: 'B',
-      imagePath: 'B.png',
+      imagePath: 'assets/classes_content/alphabets/B.png',
     ),
     LibraryDetail(
       title: 'C',
-      imagePath: 'C.png',
+      imagePath: 'assets/classes_content/alphabets/C.png',
+    ),
+    LibraryDetail(
+      title: 'D',
+      imagePath: 'assets/classes_content/alphabets/D.png',
+    ),
+    LibraryDetail(
+      title: 'E',
+      imagePath: 'assets/classes_content/alphabets/E.png',
+    ),
+    LibraryDetail(
+      title: 'F',
+      imagePath: 'assets/classes_content/alphabets/F.png',
+    ),
+    LibraryDetail(
+      title: 'G',
+      imagePath: 'assets/classes_content/alphabets/G.png',
+    ),
+    LibraryDetail(
+      title: 'H',
+      imagePath: 'assets/classes_content/alphabets/H.png',
+    ),
+    LibraryDetail(
+      title: 'I',
+      imagePath: 'assets/classes_content/alphabets/I.png',
+    ),
+    LibraryDetail(
+      title: 'J',
+      imagePath: 'assets/classes_content/alphabets/J.png',
+    ),
+    LibraryDetail(
+      title: 'K',
+      imagePath: 'assets/classes_content/alphabets/K.png',
+    ),
+    LibraryDetail(
+      title: 'L',
+      imagePath: 'assets/classes_content/alphabets/L.png',
+    ),
+    LibraryDetail(
+      title: 'M',
+      imagePath: 'assets/classes_content/alphabets/M.png',
+    ),
+    LibraryDetail(
+      title: 'N',
+      imagePath: 'assets/classes_content/alphabets/N.png',
+    ),
+    LibraryDetail(
+      title: 'O',
+      imagePath: 'assets/classes_content/alphabets/O.png',
+    ),
+    LibraryDetail(
+      title: 'P',
+      imagePath: 'assets/classes_content/alphabets/P.png',
+    ),
+    LibraryDetail(
+      title: 'Q',
+      imagePath: 'assets/classes_content/alphabets/Q.png',
+    ),
+    LibraryDetail(
+      title: 'R',
+      imagePath: 'assets/classes_content/alphabets/R.png',
+    ),
+    LibraryDetail(
+      title: 'R',
+      imagePath: 'assets/classes_content/alphabets/S.png',
+    ),
+    LibraryDetail(
+      title: 'T',
+      imagePath: 'assets/classes_content/alphabets/T.png',
+    ),
+    LibraryDetail(
+      title: 'U',
+      imagePath: 'assets/classes_content/alphabets/U.png',
+    ),
+    LibraryDetail(
+      title: 'V',
+      imagePath: 'assets/classes_content/alphabets/V.png',
+    ),
+    LibraryDetail(
+      title: 'W',
+      imagePath: 'assets/classes_content/alphabets/W.png',
+    ),
+    LibraryDetail(
+      title: 'X',
+      imagePath: 'assets/classes_content/alphabets/X.png',
+    ),
+    LibraryDetail(
+      title: 'Y',
+      imagePath: 'assets/classes_content/alphabets/Y.png',
+    ),
+    LibraryDetail(
+      title: 'Z',
+      imagePath: 'assets/classes_content/alphabets/Z.png',
     ),
   ],
   'Numbers': [
     LibraryDetail(
       title: '1',
-      imagePath: '1.png',
+      imagePath: 'assets/classes_content/numbers/1.png',
     ),
     LibraryDetail(
       title: '2',
-      imagePath: '2.png',
+      imagePath: 'assets/classes_content/numbers/2.png',
     ),
     LibraryDetail(
       title: '3',
-      imagePath: '3.png',
+      imagePath: 'assets/classes_content/numbers/3.png',
     ),
   ],
   'Family Tree': [
     LibraryDetail(
       title: 'Father',
-      imagePath: 'father.png',
+      imagePath: 'assets/classes_content/family_tree/father.png',
     ),
     LibraryDetail(
       title: 'Mother',
-      imagePath: 'mother.png',
+      imagePath: 'assets/classes_content/family_tree/mother.png',
     ),
     LibraryDetail(
       title: 'Child',
-      imagePath: 'child.png',
+      imagePath: 'assets/classes_content/family_tree/child.png',
     ),
   ],
   'Pointing Movements': [
     LibraryDetail(
       title: 'Pointing Left',
-      imagePath: 'point_left.png',
+      imagePath: 'assets/classes_content/a/point_left.png',
     ),
     LibraryDetail(
       title: 'Pointing Right',
-      imagePath: 'point_right.png',
+      imagePath: 'assets/classes_content//point_right.png',
     ),
     LibraryDetail(
       title: 'Pointing Up',
-      imagePath: 'point_up.png',
+      imagePath: 'assets/classes_content//point_up.png',
     ),
   ],
   'Basic Adjectives/Adverbs': [
     LibraryDetail(
       title: 'Good',
-      imagePath: 'good.png',
+      imagePath: 'assets/classes_content//good.png',
     ),
     LibraryDetail(
       title: 'Bad',
-      imagePath: 'bad.png',
+      imagePath: 'assets/classes_content//bad.png',
     ),
     LibraryDetail(
       title: 'Fast',
-      imagePath: 'fast.png',
+      imagePath: 'assets/classes_content//fast.png',
     ),
   ],
   'Time': [
     LibraryDetail(
       title: 'Morning',
-      imagePath: 'morning.png',
+      imagePath: 'assets/classes_content//morning.png',
     ),
     LibraryDetail(
       title: 'Afternoon',
-      imagePath: 'afternoon.png',
+      imagePath: 'assets/classes_content//afternoon.png',
     ),
     LibraryDetail(
       title: 'Evening',
-      imagePath: 'evening.png',
+      imagePath: 'assets/classes_content//evening.png',
     ),
   ],
   'Sweeping Movements': [
     LibraryDetail(
       title: 'Sweep Left',
-      imagePath: 'sweep_left.png',
+      imagePath: 'assets/classes_content//sweep_left.png',
     ),
     LibraryDetail(
       title: 'Sweep Right',
-      imagePath: 'sweep_right.png',
+      imagePath: 'assets/classes_content//sweep_right.png',
     ),
     LibraryDetail(
       title: 'Sweep Up',
-      imagePath: 'sweep_up.png',
+      imagePath: 'assets/classes_content//sweep_up.png',
     ),
   ],
   'Emotions': [
     LibraryDetail(
       title: 'Happy',
-      imagePath: 'happy.png',
+      imagePath: 'assets/classes_content//happy.png',
     ),
     LibraryDetail(
       title: 'Sad',
-      imagePath: 'sad.png',
+      imagePath: 'assets/classes_content//sad.png',
     ),
     LibraryDetail(
       title: 'Angry',
