@@ -145,7 +145,9 @@ class LibraryScreen extends StatelessWidget {
                                               child: Text(
                                                 libraryContents[index].title,
                                                 style: TextStyle(
-                                                  color: Colors.grey,
+                                                  color: Colors.black87,
+                                                  fontSize: 25.0,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
                                             ),
@@ -157,7 +159,7 @@ class LibraryScreen extends StatelessWidget {
                                               child: Text(
                                                 libraryContents[index].desc,
                                                 style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.grey,
                                                 ),
                                               ),
                                             ),

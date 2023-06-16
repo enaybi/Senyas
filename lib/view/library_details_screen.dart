@@ -8,7 +8,7 @@ class LibraryDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final details = libraryDetails[category];
+    final List<LibraryDetail>? details = libraryDetails[category];
 
     if (details == null) {
       return Scaffold(
@@ -27,8 +27,10 @@ class LibraryDetailsScreen extends StatelessWidget {
       ),
       body: GridView.count(
         crossAxisCount: 2,
-        children: List.generate(details.length, (index) {
-          final detail = details[index];
+        padding: EdgeInsets.all(16.0),
+        crossAxisSpacing: 16.0,
+        mainAxisSpacing: 16.0,
+        children: details.map((detail) {
           return Card(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,19 +40,18 @@ class LibraryDetailsScreen extends StatelessWidget {
                   width: 100.0,
                   height: 100.0,
                 ),
-                SizedBox(height: 50.0),
+                SizedBox(height: 8.0),
                 Text(
                   detail.title,
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ],
             ),
           );
-        }),
+        }).toList(),
       ),
     );
   }

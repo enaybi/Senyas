@@ -72,7 +72,8 @@ flutter:
   assets:
     - assets/
     - assets/tflite/
-    - assets/alphabets/
+    - assets/classes_content/alphabets/
+    - assets/classes/
     - assets/numbers/
     - assets/family_tree/
   # To add assets to your application, add an assets section, like this:
