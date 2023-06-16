@@ -80,7 +80,7 @@ final Map<String, List<LibraryDetail>> libraryDetails = {
       imagePath: 'assets/classes_content/alphabets/R.png',
     ),
     LibraryDetail(
-      title: 'R',
+      title: 'S',
       imagePath: 'assets/classes_content/alphabets/S.png',
     ),
     LibraryDetail(
@@ -124,6 +124,34 @@ final Map<String, List<LibraryDetail>> libraryDetails = {
     LibraryDetail(
       title: '3',
       imagePath: 'assets/classes_content/numbers/3.png',
+    ),
+    LibraryDetail(
+      title: '4',
+      imagePath: 'assets/classes_content/numbers/4.png',
+    ),
+    LibraryDetail(
+      title: '5',
+      imagePath: 'assets/classes_content/numbers/5.png',
+    ),
+    LibraryDetail(
+      title: '6',
+      imagePath: 'assets/classes_content/numbers/6.png',
+    ),
+    LibraryDetail(
+      title: '7',
+      imagePath: 'assets/classes_content/numbers/7.png',
+    ),
+    LibraryDetail(
+      title: '8',
+      imagePath: 'assets/classes_content/numbers/8.png',
+    ),
+    LibraryDetail(
+      title: '9',
+      imagePath: 'assets/classes_content/numbers/9.png',
+    ),
+    LibraryDetail(
+      title: '10',
+      imagePath: 'assets/classes_content/numbers/10.png',
     ),
   ],
   'Family Tree': [

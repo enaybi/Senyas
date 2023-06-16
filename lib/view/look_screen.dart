@@ -1,6 +1,37 @@
 import 'package:flutter/material.dart';
+import 'library_details_data.dart';
 
-class LookScreen extends StatelessWidget {
+class LookScreen extends StatefulWidget {
+  @override
+  _LookScreenState createState() => _LookScreenState();
+}
+
+class _LookScreenState extends State<LookScreen> {
+  String searchTerm = '';
+  LibraryDetail? searchResult;
+
+  void searchLibraryDetails(String query) {
+    if (query.isEmpty) {
+      setState(() {
+        searchResult = null;
+      });
+    } else {
+      final List<LibraryDetail> allDetails =
+          libraryDetails.values.expand((details) => details).toList();
+      final List<LibraryDetail> results = allDetails
+          .where((detail) =>
+              detail.title.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+      setState(() {
+        if (results.isNotEmpty) {
+          searchResult = results.first;
+        } else {
+          searchResult = null;
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,6 +43,12 @@ class LookScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              onChanged: (value) {
+                setState(() {
+                  searchTerm = value;
+                });
+                searchLibraryDetails(value);
+              },
               decoration: InputDecoration(
                 labelText: 'Search',
                 prefixIcon: Icon(Icons.search),
@@ -23,10 +60,38 @@ class LookScreen extends StatelessWidget {
             child: Container(
               color: Colors.grey[200],
               child: Center(
-                child: Text(
-                  'Search Results',
-                  style: TextStyle(fontSize: 24),
-                ),
+                child: searchResult != null
+                    ? SizedBox(
+                        width: 300.0,
+                        height: 400.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(40.0),
+                          child: Card(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  searchResult!.imagePath,
+                                  width: 150.0,
+                                  height: 150.0,
+                                ),
+                                SizedBox(height: 8.0),
+                                Text(
+                                  searchResult!.title,
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : Text(
+                        'Search Results',
+                        style: TextStyle(fontSize: 24),
+                      ),
               ),
             ),
           ),

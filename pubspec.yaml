@@ -72,7 +72,7 @@ flutter:
   assets:
     - assets/
     - assets/tflite/
-    - assets/classes
+    - assets/classes/
     - assets/classes_content/alphabets/
     - assets/classes_content/numbers/
     - assets/family_tree/

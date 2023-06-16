@@ -88,11 +88,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
-                          height: SizeConfig.blockSizeVertical * 6,
+                          height: SizeConfig.blockSizeVertical * 10,
                         ),
                         Image.asset(
                           contents[i].image,
-                          height: SizeConfig.imageSizeMultiplier * 25,
+                          height: SizeConfig.imageSizeMultiplier * 70,
                         ),
                       ],
                     ),
