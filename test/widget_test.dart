@@ -1,29 +1,74 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:camera/camera.dart';
-import 'package:senyas/main.dart';
+import 'package:tflite/tflite.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Obtain the list of available cameras
-    final cameras = await availableCameras();
+  TestWidgetsFlutterBinding.ensureInitialized();
+  const MethodChannel channel = MethodChannel('tflite');
 
-    // Use the first available camera for the test
-    final camera = cameras.first;
+  final List<MethodCall> log = <MethodCall>[];
 
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp(camera: camera));
+  setUp(() async {
+    channel.setMockMethodCallHandler((MethodCall methodCall) {
+      log.add(methodCall);
+      return null;
+    });
+    log.clear();
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('loadModel', (WidgetTester tester) async {
+    await tester.runAsync(() async {
+      await Tflite.loadModel(
+        model: 'assets/mobilenet_v1_1.0_224.tflite',
+        labels: 'assets/mobilenet_v1_1.0_224.txt',
+        numThreads: 2,
+        isAsset: false,
+        useGpuDelegate: true,
+      );
+    });
+    expect(
+      log,
+      <Matcher>[
+        isMethodCall(
+          'loadModel',
+          arguments: <String, dynamic>{
+            'model': 'assets/mobilenet_v1_1.0_224.tflite',
+            'labels': 'assets/mobilenet_v1_1.0_224.txt',
+            'numThreads': 2,
+            'isAsset': false,
+            'useGpuDelegate': true,
+          },
+        ),
+      ],
+    );
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('runModelOnImage', (WidgetTester tester) async {
+    await tester.runAsync(() async {
+      await Tflite.runModelOnImage(
+        path: '/image/path',
+        imageMean: 127.5,
+        imageStd: 0.5,
+        numResults: 6,
+        threshold: 0.1,
+        asynch: false,
+      );
+    });
+    expect(
+      log,
+      <Matcher>[
+        isMethodCall(
+          'runModelOnImage',
+          arguments: <String, dynamic>{
+            'path': '/image/path',
+            'imageMean': 127.5,
+            'imageStd': 0.5,
+            'numResults': 6,
+            'threshold': 0.1,
+            'asynch': false,
+          },
+        ),
+      ],
+    );
   });
 }
