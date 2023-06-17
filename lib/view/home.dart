@@ -12,8 +12,8 @@ Future<void> main() async {
 
   // Load the model and labels
   await Tflite.loadModel(
-    model: 'assets/detect.tflite',
-    labels: 'assets/labelmap.txt',
+    model: 'assets/model/detect.tflite',
+    labels: 'assets/model/labelmap.txt',
   );
 
   runApp(MyApp(camera: firstCamera));
@@ -101,10 +101,9 @@ class _HomeScreenState extends State<HomeScreen> {
     int imgHeight,
     int imgWidth,
   ) async {
-    // Run sign language detection
     List<dynamic>? recognitions = await Tflite.detectObjectOnFrame(
-      bytesList: [imageBytes.buffer.asUint8List()],
-      model: 'SSDMobileNet',
+      bytesList: [imageBytes],
+      model: 'detect.tflite', // Change to your custom model filename
       threshold: 0.4,
       imageHeight: imgHeight,
       imageWidth: imgWidth,

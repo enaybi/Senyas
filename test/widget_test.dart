@@ -19,8 +19,8 @@ void main() {
   testWidgets('loadModel', (WidgetTester tester) async {
     await tester.runAsync(() async {
       await Tflite.loadModel(
-        model: 'assets/mobilenet_v1_1.0_224.tflite',
-        labels: 'assets/mobilenet_v1_1.0_224.txt',
+        model: 'assets/model/detect.tflite',
+        labels: 'assets/model/labelmap.txt',
         numThreads: 2,
         isAsset: false,
         useGpuDelegate: true,
@@ -32,8 +32,8 @@ void main() {
         isMethodCall(
           'loadModel',
           arguments: <String, dynamic>{
-            'model': 'assets/mobilenet_v1_1.0_224.tflite',
-            'labels': 'assets/mobilenet_v1_1.0_224.txt',
+            'model': 'assets/model/detect.tflite',
+            'labels': 'assets/model/labelmap.txt',
             'numThreads': 2,
             'isAsset': false,
             'useGpuDelegate': true,
