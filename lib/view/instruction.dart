@@ -6,28 +6,28 @@ class InstructionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 127, 216, 189),
-        title: Text('Instruction',
+        backgroundColor: const Color.fromARGB(255, 127, 216, 189),
+        title: const Text('Instruction',
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Colors.white)),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-            Text(
+            const Text(
               'How to use the app:',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -50,7 +50,7 @@ class InstructionScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
                 SvgPicture.asset(
@@ -58,7 +58,7 @@ class InstructionScreen extends StatelessWidget {
                   width: 200,
                   height: 200,
                 ),
-                Expanded(
+                const Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -85,10 +85,10 @@ class InstructionScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: Text(
                     '5. Press the circular arrows to change the camera from front to back and vice-versa.',
                     style: TextStyle(fontSize: 16),
@@ -101,7 +101,7 @@ class InstructionScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
@@ -113,18 +113,18 @@ class InstructionScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 180,
                       ),
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         '6. Press the sign language icon when you want to search for a Filipino sign language.',
                         style: TextStyle(fontSize: 16),
                       ),
-                      SizedBox(height: 8),
-                      Text(
+                      const SizedBox(height: 8),
+                      const Text(
                         '7. Press the camera icon if you want to go back to the homepage.',
                         style: TextStyle(fontSize: 16),
                       ),
-                      SizedBox(height: 8),
-                      Text(
+                      const SizedBox(height: 8),
+                      const Text(
                         '8. Press the message icon to navigate to the chatpad.',
                         style: TextStyle(fontSize: 16),
                       ),

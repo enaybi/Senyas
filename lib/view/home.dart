@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: Stack(
         children: [
           FutureBuilder<void>(
@@ -188,7 +188,7 @@ class SignLanguageDetectorPainter extends CustomPainter {
       Colors.purple,
     ];
 
-    final textStyle = TextStyle(
+    final textStyle = const TextStyle(
       color: Colors.white,
       fontSize: 16.0,
       backgroundColor: Colors.black,

@@ -32,7 +32,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(50),
-        color: _currentPage == index ? Color(0xFF000000) : Colors.transparent,
+        color: _currentPage == index
+            ? const Color(0xFF000000)
+            : Colors.transparent,
       ),
       margin: const EdgeInsets.only(right: 5),
       height: 10,

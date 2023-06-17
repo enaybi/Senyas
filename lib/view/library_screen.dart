@@ -15,22 +15,22 @@ class LibraryScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: Column(
         children: [
           Expanded(
             child: Container(
-              color: Color.fromARGB(255, 127, 216, 189),
+              color: const Color.fromARGB(255, 127, 216, 189),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Divider(
+                  const Divider(
                     color: Colors.transparent,
                     thickness: 1.0,
                     indent: 16.0,
                     endIndent: 16.0,
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
                       'Welcome',
@@ -42,7 +42,7 @@ class LibraryScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       'Learn Basic Sign Language',
@@ -53,18 +53,18 @@ class LibraryScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(30.0),
                           topRight: Radius.circular(30.0),
                         ),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -74,24 +74,24 @@ class LibraryScreen extends StatelessWidget {
                               indent: 16.0,
                               endIndent: 16.0,
                             ),
-                            Text(
+                            const Text(
                               'Learning Courses',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30.0,
                               ),
                             ),
-                            Divider(
+                            const Divider(
                               color: Colors.transparent,
                             ),
-                            SizedBox(height: 16.0),
+                            const SizedBox(height: 16.0),
                             Expanded(
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: libraryContents.length,
                                 itemBuilder: (context, index) {
                                   return Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                       right: 16.0,
                                       bottom: 100.0,
                                     ),
@@ -121,7 +121,7 @@ class LibraryScreen extends StatelessWidget {
                                                   Colors.grey.withOpacity(0.5),
                                               spreadRadius: 2,
                                               blurRadius: 5,
-                                              offset: Offset(0, 3),
+                                              offset: const Offset(0, 3),
                                             ),
                                           ],
                                         ),
@@ -138,13 +138,13 @@ class LibraryScreen extends StatelessWidget {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                 left: 8.0,
                                                 bottom: 8.0,
                                               ),
                                               child: Text(
                                                 libraryContents[index].title,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.black87,
                                                   fontSize: 25.0,
                                                   fontWeight: FontWeight.bold,
@@ -152,13 +152,13 @@ class LibraryScreen extends StatelessWidget {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                 left: 8.0,
                                                 bottom: 8.0,
                                               ),
                                               child: Text(
                                                 libraryContents[index].desc,
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: Colors.grey,
                                                 ),
                                               ),
@@ -171,7 +171,7 @@ class LibraryScreen extends StatelessWidget {
                                 },
                               ),
                             ),
-                            Divider(),
+                            const Divider(),
                           ],
                         ),
                       ),
@@ -188,7 +188,7 @@ class LibraryScreen extends StatelessWidget {
         child: Container(
           width: 250,
           height: 60,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),

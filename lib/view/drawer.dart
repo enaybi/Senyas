@@ -58,11 +58,11 @@ class _AppDrawerState extends State<AppDrawer> {
               height: 100,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ListTile(
-              title: Text(
+              title: const Text(
                 'Library',
                 style: TextStyle(
                   fontFamily: 'Poppins',
@@ -78,11 +78,11 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ListTile(
-              title: Text(
+              title: const Text(
                 'User Instruction',
                 style: TextStyle(
                   fontFamily: 'Poppins',
@@ -98,11 +98,11 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: ListTile(
-              title: Text(
+              title: const Text(
                 'About',
                 style: TextStyle(
                   fontFamily: 'Poppins',

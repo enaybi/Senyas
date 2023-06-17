@@ -36,7 +36,7 @@ class _LookScreenState extends State<LookScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Column(
         children: [
@@ -49,7 +49,7 @@ class _LookScreenState extends State<LookScreen> {
                 });
                 searchLibraryDetails(value);
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Search',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
@@ -75,10 +75,10 @@ class _LookScreenState extends State<LookScreen> {
                                   width: 150.0,
                                   height: 150.0,
                                 ),
-                                SizedBox(height: 8.0),
+                                const SizedBox(height: 8.0),
                                 Text(
                                   searchResult!.title,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -88,7 +88,7 @@ class _LookScreenState extends State<LookScreen> {
                           ),
                         ),
                       )
-                    : Text(
+                    : const Text(
                         'Search Results',
                         style: TextStyle(fontSize: 24),
                       ),
