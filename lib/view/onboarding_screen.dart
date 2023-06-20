@@ -58,119 +58,139 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           children: [
             Expanded(
               flex: 3,
-              child: PageView.builder(
-                physics: const BouncingScrollPhysics(),
-                controller: _controller,
-                onPageChanged: (value) => setState(() => _currentPage = value),
-                itemCount: contents.length,
-                itemBuilder: (context, i) {
-                  return Padding(
-                    padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 5),
-                    child: Column(
-                      children: [
-                        Text(
-                          contents[i].title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: "Mulish",
-                            fontWeight: FontWeight.bold,
-                            fontSize: titleFontSize,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(height: 15),
-                        Text(
-                          contents[i].desc,
-                          style: TextStyle(
-                            fontFamily: "Mulish",
-                            fontWeight: FontWeight.normal,
-                            fontSize: descFontSize,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(
-                          height: SizeConfig.blockSizeVertical * 10,
-                        ),
-                        Image.asset(
-                          contents[i].image,
-                          height: SizeConfig.imageSizeMultiplier * 70,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            Expanded(
-              flex: 1,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      contents.length,
-                      (int index) => _buildDots(
-                        index: index,
-                      ),
+                  Expanded(
+                    child: PageView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      controller: _controller,
+                      onPageChanged: (value) =>
+                          setState(() => _currentPage = value),
+                      itemCount: contents.length,
+                      itemBuilder: (context, i) {
+                        return Padding(
+                          padding: EdgeInsets.all(
+                              SizeConfig.blockSizeHorizontal * 5),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: SizeConfig.blockSizeVertical * 5),
+                                child: Text(
+                                  contents[i].title,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: "Mulish",
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: titleFontSize,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                contents[i].desc,
+                                style: TextStyle(
+                                  fontFamily: "Mulish",
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: descFontSize,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(
+                                height: SizeConfig.blockSizeVertical * 8.2,
+                              ),
+                              Center(
+                                child: Image.asset(
+                                  contents[i].image,
+                                  height: SizeConfig.imageSizeMultiplier * 64.2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(SizeConfig.blockSizeHorizontal * 5),
+                    padding: EdgeInsets.only(
+                        bottom: SizeConfig.blockSizeVertical * 3),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            _controller.jumpToPage(2);
-                          },
-                          child: const Text(
-                            "SKIP",
-                            style: TextStyle(color: Colors.black87),
-                          ),
-                          style: TextButton.styleFrom(
-                            elevation: 0,
-                            textStyle: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: buttonTextFontSize,
-                            ),
-                          ),
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(
+                        contents.length,
+                        (int index) => _buildDots(
+                          index: index,
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                            if (_currentPage + 1 == contents.length) {
-                              // Handle the "START" button action
-                              Navigator.pushReplacementNamed(context, '/home');
-                            } else {
-                              _controller.nextPage(
-                                duration: const Duration(milliseconds: 200),
-                                curve: Curves.easeIn,
-                              );
-                            }
-                          },
-                          child: Text(
-                            _currentPage + 1 == contents.length
-                                ? "START"
-                                : "NEXT",
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            elevation: 0,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: SizeConfig.blockSizeHorizontal * 20,
-                              vertical: SizeConfig.blockSizeVertical * 3,
-                            ),
-                            textStyle: TextStyle(fontSize: buttonTextFontSize),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],
+              ),
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.only(bottom: SizeConfig.blockSizeVertical * 2),
+              child: Align(
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: SizeConfig.blockSizeHorizontal * 10,
+                      vertical: SizeConfig.blockSizeVertical * 1),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context,
+                              '/home'); // Go directly to the home screen
+                        },
+                        child: const Text(
+                          "SKIP",
+                          style: TextStyle(color: Colors.black87),
+                        ),
+                        style: TextButton.styleFrom(
+                          elevation: 0,
+                          textStyle: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: buttonTextFontSize,
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (_currentPage + 1 == contents.length) {
+                            // Handle the "START" button action
+                            Navigator.pushReplacementNamed(context, '/home');
+                          } else {
+                            _controller.nextPage(
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.easeIn,
+                            );
+                          }
+                        },
+                        child: Text(
+                          _currentPage + 1 == contents.length
+                              ? "START"
+                              : "NEXT",
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                          elevation: 0,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.blockSizeHorizontal * 10,
+                            vertical: SizeConfig.blockSizeVertical * 3,
+                          ),
+                          textStyle: TextStyle(fontSize: buttonTextFontSize),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
