@@ -29,14 +29,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  tflite: ^1.1.2
+  #tflite: ^1.1.2
   camera: ^0.9.4+5
   flutter_svg: ^0.22.0
   flutter_native_splash: ^2.0.1+1
   dots_indicator: ^2.0.0
   easy_search_bar: ^2.5.0
+  image_picker: ^0.7.0
 
-
+  tflite:
+    git:
+      url: https://github.com/geniusqwerty12/flutter_tflite
 
 
 flutter_native_splash:
