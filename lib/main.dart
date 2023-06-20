@@ -6,7 +6,8 @@ import 'package:senyas/view/onboarding_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
-  final firstCamera = cameras.first;
+  // cameras.first refers to the back camera, cameras.last refers to the front camera
+  final firstCamera = cameras.last;
   runApp(MyApp(camera: firstCamera));
 }
 

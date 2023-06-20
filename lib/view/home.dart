@@ -5,37 +5,6 @@ import 'package:tflite/tflite.dart';
 import 'drawer.dart';
 import 'floatingButton.dart';
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final cameras = await availableCameras();
-  final firstCamera = cameras.first;
-
-  // Load the model and labels
-  await Tflite.loadModel(
-    model: 'assets/model/detect.tflite',
-    labels: 'assets/model/labelmap.txt',
-  );
-
-  runApp(MyApp(camera: firstCamera));
-}
-
-class MyApp extends StatelessWidget {
-  final CameraDescription camera;
-
-  const MyApp({Key? key, required this.camera}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'My App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeScreen(camera: camera),
-    );
-  }
-}
-
 class HomeScreen extends StatefulWidget {
   final CameraDescription camera;
 
@@ -48,20 +17,22 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late CameraController _controller;
   List<dynamic>? _signLanguageRecognitions;
+  bool isDetecting =
+      false; // flag to prevent the intepreter from calling multiple functions of detectObject
 
   @override
   void initState() {
     super.initState();
     _controller = CameraController(
       widget.camera,
-      ResolutionPreset.medium,
+      ResolutionPreset.high,
     );
-
+    loadModelFromAssets(); // load the model using this method
     _controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
-      setState(() {});
+      // setState(() {});
 
       _startImageStream();
     });
@@ -75,37 +46,54 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
+  // function to load the model from assets
+  // required
+  void loadModelFromAssets() async {
+    await Tflite.loadModel(
+      model: 'assets/model/detect.tflite',
+      labels: 'assets/model/labelmap.txt',
+      numThreads: 2,
+    );
+  }
+
   void _startImageStream() async {
     await _controller.startImageStream((CameraImage image) async {
-      if (_signLanguageRecognitions != null) {
+      if (isDetecting) {
         // Skip processing if previous detection is not complete
         return;
       }
-
+      print("Running SSD...");
+      isDetecting = true;
       // Preprocess the camera image
       final imgHeight = image.height;
       final imgWidth = image.width;
-      final convertedImage = _convertYUV420ToImage(image);
 
       // Run sign language detection
       List<dynamic>? recognitions =
-          await _detectSignLanguage(convertedImage, imgHeight, imgWidth);
+          await _detectSignLanguage(image, imgHeight, imgWidth);
 
+      if (recognitions != null && recognitions.isNotEmpty) {
+        print(recognitions.first);
+      }
       setState(() {
         _signLanguageRecognitions = recognitions;
+        isDetecting = false; // set the flag to false to start the detectObject
       });
     });
   }
 
   Future<List<dynamic>?> _detectSignLanguage(
-      Uint8List imageBytes, int imgHeight, int imgWidth) async {
+      CameraImage image, int imgHeight, int imgWidth) async {
+    // try to tweak the configuration of the function
     List<dynamic>? recognitions = await Tflite.detectObjectOnFrame(
-      bytesList: [imageBytes],
-      model: 'assets/model/detect.tflite',
-      threshold: 0.4,
+      bytesList: image.planes.map((plane) => plane.bytes).toList(),
+      threshold: 0.4, // removes results that have a lower confidence value
       imageHeight: imgHeight,
       imageWidth: imgWidth,
-      numResultsPerClass: 1,
+      imageMean: 127.5, // default is 127.5
+      imageStd: 127.5, // default is 127.5
+      asynch: true,
+      numResultsPerClass: 5,
     );
 
     // Normalize the bounding box coordinates
@@ -121,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return recognitions;
   }
 
+  // not needed, this only causes an error when running on detectObject
   Uint8List _convertYUV420ToImage(CameraImage image) {
     final plane = image.planes[0];
     final bytesPerRow = plane.bytesPerRow;
