@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'drawer.dart';
+import 'floatingButton.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +47,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late CameraController _controller;
-  late Future<void> _initializeControllerFuture;
   List<dynamic>? _signLanguageRecognitions;
 
   @override
@@ -57,10 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
       ResolutionPreset.medium,
     );
 
-    _initializeControllerFuture = _controller.initialize().then((_) {
+    _controller.initialize().then((_) {
       if (!mounted) {
         return;
       }
+      setState(() {});
+
       _startImageStream();
     });
   }
@@ -83,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
       // Preprocess the camera image
       final imgHeight = image.height;
       final imgWidth = image.width;
-      final convertedImage = _convertCameraImageToUint8List(image);
+      final convertedImage = _convertYUV420ToImage(image);
 
       // Run sign language detection
       List<dynamic>? recognitions =
@@ -96,13 +98,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<List<dynamic>?> _detectSignLanguage(
-    Uint8List imageBytes,
-    int imgHeight,
-    int imgWidth,
-  ) async {
+      Uint8List imageBytes, int imgHeight, int imgWidth) async {
     List<dynamic>? recognitions = await Tflite.detectObjectOnFrame(
       bytesList: [imageBytes],
-      model: 'detect.tflite', // Change to your custom model filename
+      model: 'assets/model/detect.tflite',
       threshold: 0.4,
       imageHeight: imgHeight,
       imageWidth: imgWidth,
@@ -122,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return recognitions;
   }
 
-  Uint8List _convertCameraImageToUint8List(CameraImage image) {
+  Uint8List _convertYUV420ToImage(CameraImage image) {
     final plane = image.planes[0];
     final bytesPerRow = plane.bytesPerRow;
     final imageSize = bytesPerRow * image.height;
@@ -131,20 +130,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (!_controller.value.isInitialized) {
+      return Container();
+    }
+
     return Scaffold(
       appBar: AppBar(),
       drawer: const AppDrawer(),
       body: Stack(
         children: [
-          FutureBuilder<void>(
-            future: _initializeControllerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return CameraPreview(_controller);
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
+          Positioned.fill(
+            child: AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: CameraPreview(_controller),
+            ),
           ),
           if (_signLanguageRecognitions != null)
             Positioned.fill(
@@ -156,6 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+          FloatingButton(),
         ],
       ),
     );
@@ -215,47 +215,88 @@ class SignLanguageDetectorPainter extends CustomPainter {
 
       final labelOffset = Offset(
         boundingBox.left,
-        boundingBox.top > 20 ? boundingBox.top - 20 : boundingBox.top + 20,
+        boundingBox.top > 15.0
+            ? boundingBox.top - 15.0
+            : boundingBox.top + 15.0,
       );
 
       canvas.drawRect(
-        Rect.fromPoints(
-          labelOffset,
-          Offset(
-            labelOffset.dx + label.length * 8.0,
-            labelOffset.dy + 20.0,
-          ),
+        Rect.fromLTWH(
+          labelOffset.dx - 2.0,
+          labelOffset.dy - 20.0,
+          label.length * 9.0 + 4.0,
+          24.0,
         ),
         Paint()..color = Colors.black,
       );
 
-      final textPainter = TextPainter(
+      canvas.drawRect(
+        Rect.fromLTWH(
+          labelOffset.dx - 2.0,
+          labelOffset.dy - 20.0,
+          label.length * 9.0 + 4.0,
+          24.0,
+        ),
+        Paint()..color = colors[classIndex % colors.length],
+      );
+
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+            labelOffset.dx - 2.0,
+            labelOffset.dy - 20.0,
+            label.length * 9.0 + 4.0,
+            24.0,
+          ),
+          const Radius.circular(12.0),
+        ),
+        Paint()..color = Colors.black,
+      );
+
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(
+            labelOffset.dx - 2.0,
+            labelOffset.dy - 20.0,
+            label.length * 9.0 + 4.0,
+            24.0,
+          ),
+          const Radius.circular(12.0),
+        ),
+        Paint()..color = colors[classIndex % colors.length],
+      );
+
+      TextPainter(
         text: TextSpan(
           text: label,
           style: textStyle,
         ),
-        textAlign: TextAlign.left,
         textDirection: TextDirection.ltr,
-      );
-      textPainter.layout();
-      textPainter.paint(canvas, labelOffset);
-    }
-  }
-
-  String _getClassName(int classIndex) {
-    // Modify this method to return the class name based on the provided index
-    switch (classIndex) {
-      case 0:
-        return 'I/Ako';
-      case 1:
-        return 'Yes/Oo';
-      case 2:
-        return 'Baby/Sanggol';
-      default:
-        return 'Unknown';
+      )
+        ..layout(minWidth: 0, maxWidth: size.width)
+        ..paint(
+          canvas,
+          labelOffset,
+        );
     }
   }
 
   @override
-  bool shouldRepaint(SignLanguageDetectorPainter oldDelegate) => false;
+  bool shouldRepaint(SignLanguageDetectorPainter oldDelegate) {
+    return oldDelegate.recognitions != recognitions;
+  }
+}
+
+String _getClassName(int classIndex) {
+  // Modify this method to return the class name based on the provided index
+  switch (classIndex) {
+    case 0:
+      return 'I/Ako';
+    case 1:
+      return 'Yes/Oo';
+    case 2:
+      return 'Baby/Sanggol';
+    default:
+      return 'Unknown';
+  }
 }

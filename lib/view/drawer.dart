@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart'
     show
-        BoxDecoration,
         BuildContext,
         Color,
         Colors,
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart'
         MaterialPageRoute,
         Navigator,
         SizedBox,
-        StatelessWidget,
         Text,
         TextStyle,
         Widget;
