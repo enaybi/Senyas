@@ -38,20 +38,18 @@ class Chatpad extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Container(
-          child: TextField(
-            controller: _textEditingController,
-            maxLines: null,
-            keyboardType: TextInputType.multiline,
-            style: const TextStyle(
-              fontFamily: 'Courier New',
-              fontSize: 16,
-            ),
-            decoration: const InputDecoration(
-              hintText: 'Start typing...',
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(16.0),
-            ),
+        child: TextField(
+          controller: _textEditingController,
+          maxLines: null,
+          keyboardType: TextInputType.multiline,
+          style: const TextStyle(
+            fontFamily: 'Courier New',
+            fontSize: 16,
+          ),
+          decoration: const InputDecoration(
+            hintText: 'Start typing...',
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.all(16.0),
           ),
         ),
       ),
