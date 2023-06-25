@@ -37,8 +37,9 @@ class LibraryDetailsScreen extends StatelessWidget {
               children: [
                 Image.asset(
                   detail.imagePath,
-                  width: 150.0,
-                  height: 150.0,
+                  fit: BoxFit.cover,
+                  width: MediaQuery.of(context).size.width * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.2,
                 ),
                 const SizedBox(height: 8.0),
                 Text(
