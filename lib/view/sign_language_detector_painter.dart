@@ -1,5 +1,43 @@
 import 'package:flutter/material.dart';
 
+List<Widget> renderBoxes(Size screen, List<dynamic> recognitions,
+    double imageWidth, double imageHeight) {
+  if (recognitions == null) return [];
+  if (imageWidth == null || imageHeight == null) return [];
+
+  double factorX = screen.width;
+  double factorY = imageHeight / imageHeight * screen.width;
+
+  Color blue = Colors.blue;
+
+  return recognitions.map((re) {
+    return Positioned(
+      left: re['rect']['x'] * factorX,
+      top: re['rect']['y'] * factorY,
+      width: re['rect']['w'] * factorX,
+      height: re['rect']['h'] * factorY,
+      child: ((re['confidence'] > 0.50))
+          ? Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: blue,
+                  width: 3,
+                ),
+              ),
+              child: Text(
+                "${_getClassName(re['index'])} ${(re['confidence'] * 100).toStringAsFixed(0)}%",
+                style: TextStyle(
+                  background: Paint()..color = blue,
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
+              ),
+            )
+          : Container(),
+    );
+  }).toList();
+}
+
 class SignLanguageDetectorPainter extends CustomPainter {
   final List<dynamic> recognitions;
   final double imageWidth;
