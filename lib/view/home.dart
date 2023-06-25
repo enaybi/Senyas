@@ -4,6 +4,7 @@ import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'drawer.dart';
 import 'floatingButton.dart';
+import 'sign_language_detector_painter.dart';
 
 class HomeScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late CameraController _controller;
   List<dynamic>? _signLanguageRecognitions;
   bool isDetecting =
-      false; // flag to prevent the intepreter from calling multiple functions of detectObject
+      false; // flag to prevent the interpreter from calling multiple functions of detectObject
 
   @override
   void initState() {
@@ -32,8 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
       if (!mounted) {
         return;
       }
-      // setState(() {});
-
       _startImageStream();
     });
   }
@@ -84,7 +83,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<List<dynamic>?> _detectSignLanguage(
       CameraImage image, int imgHeight, int imgWidth) async {
-    // try to tweak the configuration of the function
     List<dynamic>? recognitions = await Tflite.detectObjectOnFrame(
       bytesList: image.planes.map((plane) => plane.bytes).toList(),
       threshold: 0.4, // removes results that have a lower confidence value
@@ -107,14 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return recognitions;
-  }
-
-  // not needed, this only causes an error when running on detectObject
-  Uint8List _convertYUV420ToImage(CameraImage image) {
-    final plane = image.planes[0];
-    final bytesPerRow = plane.bytesPerRow;
-    final imageSize = bytesPerRow * image.height;
-    return Uint8List.view(plane.bytes.buffer, 0, imageSize);
   }
 
   @override
@@ -148,144 +138,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
-  }
-}
-
-class SignLanguageDetectorPainter extends CustomPainter {
-  final List<dynamic> recognitions;
-  final double imageWidth;
-  final double imageHeight;
-
-  SignLanguageDetectorPainter({
-    required this.recognitions,
-    required this.imageWidth,
-    required this.imageHeight,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final double scaleX = size.width / imageWidth;
-    final double scaleY = size.height / imageHeight;
-
-    final List<Color> colors = [
-      Colors.red,
-      Colors.green,
-      Colors.blue,
-      Colors.yellow,
-      Colors.orange,
-      Colors.purple,
-    ];
-
-    final textStyle = const TextStyle(
-      color: Colors.white,
-      fontSize: 16.0,
-      backgroundColor: Colors.black,
-    );
-
-    for (final recognition in recognitions) {
-      final int classIndex = recognition['index'];
-      final String className = _getClassName(classIndex);
-      final double confidence = recognition['confidence'];
-      final Rect boundingBox = Rect.fromLTRB(
-        recognition['rect']['x'] * scaleX,
-        recognition['rect']['y'] * scaleY,
-        recognition['rect']['w'] * scaleX,
-        recognition['rect']['h'] * scaleY,
-      );
-
-      final paint = Paint()
-        ..color = colors[classIndex % colors.length]
-        ..strokeWidth = 2.0
-        ..style = PaintingStyle.stroke;
-
-      canvas.drawRect(boundingBox, paint);
-
-      final label = '$className (${(confidence * 100).toStringAsFixed(1)}%)';
-
-      final labelOffset = Offset(
-        boundingBox.left,
-        boundingBox.top > 15.0
-            ? boundingBox.top - 15.0
-            : boundingBox.top + 15.0,
-      );
-
-      canvas.drawRect(
-        Rect.fromLTWH(
-          labelOffset.dx - 2.0,
-          labelOffset.dy - 20.0,
-          label.length * 9.0 + 4.0,
-          24.0,
-        ),
-        Paint()..color = Colors.black,
-      );
-
-      canvas.drawRect(
-        Rect.fromLTWH(
-          labelOffset.dx - 2.0,
-          labelOffset.dy - 20.0,
-          label.length * 9.0 + 4.0,
-          24.0,
-        ),
-        Paint()..color = colors[classIndex % colors.length],
-      );
-
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromLTWH(
-            labelOffset.dx - 2.0,
-            labelOffset.dy - 20.0,
-            label.length * 9.0 + 4.0,
-            24.0,
-          ),
-          const Radius.circular(12.0),
-        ),
-        Paint()..color = Colors.black,
-      );
-
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromLTWH(
-            labelOffset.dx - 2.0,
-            labelOffset.dy - 20.0,
-            label.length * 9.0 + 4.0,
-            24.0,
-          ),
-          const Radius.circular(12.0),
-        ),
-        Paint()..color = colors[classIndex % colors.length],
-      );
-
-      TextPainter(
-        text: TextSpan(
-          text: label,
-          style: textStyle,
-        ),
-        textDirection: TextDirection.ltr,
-      )
-        ..layout(minWidth: 0, maxWidth: size.width)
-        ..paint(
-          canvas,
-          labelOffset,
-        );
-    }
-  }
-
-  @override
-  bool shouldRepaint(SignLanguageDetectorPainter oldDelegate) {
-    return oldDelegate.recognitions != recognitions;
-  }
-}
-
-String _getClassName(int classIndex) {
-  // Modify this method to return the class name based on the provided index
-  switch (classIndex) {
-    case 0:
-      return 'I/Ako';
-    case 1:
-      return 'Yes/Oo';
-    case 2:
-      return 'Baby/Sanggol';
-    default:
-      return 'Unknown';
   }
 }

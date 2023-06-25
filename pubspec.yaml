@@ -36,6 +36,7 @@ dependencies:
   dots_indicator: ^2.0.0
   easy_search_bar: ^2.5.0
   image_picker: ^0.7.0
+  
 
   tflite:
     git:
