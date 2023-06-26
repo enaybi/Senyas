@@ -25,34 +25,37 @@ class LibraryDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(category),
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        crossAxisSpacing: 16.0,
-        mainAxisSpacing: 16.0,
-        children: details.map((detail) {
-          return Card(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  detail.imagePath,
-                  fit: BoxFit.cover,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                ),
-                const SizedBox(height: 8.0),
-                Text(
-                  detail.title,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: GridView.count(
+          shrinkWrap: true,
+          crossAxisCount: 2,
+          padding: const EdgeInsets.all(16.0),
+          crossAxisSpacing: 16.0,
+          mainAxisSpacing: 16.0,
+          children: details.map((detail) {
+            return Card(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    detail.imagePath,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: MediaQuery.of(context).size.width * 0.8,
                   ),
-                ),
-              ],
-            ),
-          );
-        }).toList(),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    detail.title,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

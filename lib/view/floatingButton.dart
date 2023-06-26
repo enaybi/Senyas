@@ -15,6 +15,7 @@ class FloatingButton extends StatelessWidget {
       child: Container(
         width: 250,
         height: 60,
+        margin: EdgeInsets.only(bottom: 20),
         decoration: const BoxDecoration(
           color: Colors.grey,
           borderRadius: BorderRadius.all(Radius.circular(30.0)),

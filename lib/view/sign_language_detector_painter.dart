@@ -166,11 +166,13 @@ class SignLanguageDetectorPainter extends CustomPainter {
 String _getClassName(int classIndex) {
   switch (classIndex) {
     case 0:
-      return 'I/Ako';
-    case 1:
-      return 'Yes/Oo';
-    case 2:
       return 'Baby/Sanggol';
+    case 1:
+      return 'Brother/Kuya';
+    case 2:
+      return 'Mother/Nanay ';
+    case 3:
+      return 'Sister/Ate';
     default:
       return 'Unknown';
   }
