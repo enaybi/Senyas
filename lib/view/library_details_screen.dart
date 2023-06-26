@@ -33,26 +33,35 @@ class LibraryDetailsScreen extends StatelessWidget {
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
           children: details.map((detail) {
-            return Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Image.asset(
-                    detail.imagePath,
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.width * 0.8,
+            return LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                final cardWidth = constraints.maxWidth;
+                final imageWidth = cardWidth * 0.6;
+                final imageHeight = imageWidth * (4 / 3);
+                final textSize = 20.0;
+
+                return Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Image.asset(
+                        detail.imagePath,
+                        width: imageWidth,
+                        height: imageHeight,
+                      ),
+                      const SizedBox(height: 8.0),
+                      Text(
+                        detail.title,
+                        style: TextStyle(
+                          fontSize: textSize,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    detail.title,
-                    style: const TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
+                );
+              },
             );
           }).toList(),
         ),
