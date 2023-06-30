@@ -4,94 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'drawer.dart';
-import 'floatingButton.dart';
-import 'sign_language_detector_painter.dart';
+import 'bounding_box.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
-
-class CameraFeed extends StatefulWidget {
-  final List<CameraDescription> cameras;
-  final Callback setRecognitions;
-
-  CameraFeed(this.cameras, this.setRecognitions);
-
-  @override
-  _CameraFeedState createState() => _CameraFeedState();
-}
-
-class _CameraFeedState extends State<CameraFeed> {
-  CameraController? controller;
-  bool isDetecting = false;
-
-  @override
-  void initState() {
-    super.initState();
-    print(widget.cameras);
-    if (widget.cameras.isEmpty) {
-      print('No Cameras Found.');
-    } else {
-      controller = CameraController(
-        widget.cameras[0],
-        ResolutionPreset.high,
-      );
-      controller!.initialize().then((_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {});
-
-        controller!.startImageStream((CameraImage img) {
-          if (!isDetecting) {
-            isDetecting = true;
-            Tflite.detectObjectOnFrame(
-              bytesList: img.planes.map((plane) => plane.bytes).toList(),
-              model: "SSDMobileNet",
-              imageHeight: img.height,
-              imageWidth: img.width,
-              imageMean: 127.5,
-              imageStd: 127.5,
-              numResultsPerClass: 3,
-              threshold: 0.4,
-            ).then((recognitions) {
-              widget.setRecognitions(recognitions!, img.height, img.width);
-              isDetecting = false;
-            });
-          }
-        });
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (controller == null || !controller!.value.isInitialized) {
-      return Container();
-    }
-
-    var tmp = MediaQuery.of(context).size;
-    var screenH = math.max(tmp.height, tmp.width);
-    var screenW = math.min(tmp.height, tmp.width);
-    tmp = controller!.value.previewSize!;
-    var previewH = math.max(tmp.height, tmp.width);
-    var previewW = math.min(tmp.height, tmp.width);
-    var screenRatio = screenH / screenW;
-    var previewRatio = previewH / previewW;
-
-    return OverflowBox(
-      maxHeight:
-          screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-      maxWidth:
-          screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-      child: CameraPreview(controller!),
-    );
-  }
-}
 
 class HomeScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -103,19 +18,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late CameraController _controller;
+  CameraController? controller;
   List<dynamic>? _signLanguageRecognitions;
   bool isDetecting = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = CameraController(
+    controller = CameraController(
       widget.camera,
       ResolutionPreset.high,
     );
     loadModelFromAssets();
-    _controller.initialize().then((_) {
+    controller!.initialize().then((_) {
       if (!mounted) {
         return;
       }
@@ -125,8 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _controller.stopImageStream();
-    _controller.dispose();
+    controller?.stopImageStream();
+    controller?.dispose();
     Tflite.close();
     super.dispose();
   }
@@ -140,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _startImageStream() async {
-    await _controller.startImageStream((CameraImage image) async {
+    await controller!.startImageStream((CameraImage image) async {
       if (isDetecting) {
         return;
       }
@@ -150,8 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
       final imgHeight = image.height;
       final imgWidth = image.width;
 
-      List<dynamic>? recognitions =
-          await _detectSignLanguage(image, imgHeight, imgWidth);
+      List<dynamic>? recognitions = await _detectSignLanguage(
+        image,
+        imgHeight,
+        imgWidth,
+      );
 
       if (recognitions != null && recognitions.isNotEmpty) {
         print(recognitions.first);
@@ -190,32 +108,41 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_controller.value.isInitialized) {
+    if (!controller!.value.isInitialized) {
       return Container();
     }
 
+    Size tmp = MediaQuery.of(context).size;
+    double screenH = math.max(tmp.height, tmp.width);
+    double screenW = math.min(tmp.height, tmp.width);
+    tmp = controller!.value.previewSize!;
+    double previewH = math.max(tmp.height, tmp.width);
+    double previewW = math.min(tmp.height, tmp.width);
+    double screenRatio = screenH / screenW;
+    double previewRatio = previewH / previewW;
+
     return Scaffold(
-      appBar: AppBar(),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       drawer: const AppDrawer(),
       body: Stack(
         children: [
           Positioned.fill(
             child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: CameraPreview(_controller),
+              aspectRatio: controller!.value.aspectRatio,
+              child: CameraPreview(controller!),
             ),
           ),
           if (_signLanguageRecognitions != null)
             Positioned.fill(
-              child: CustomPaint(
-                painter: SignLanguageDetectorPainter(
-                  recognitions: _signLanguageRecognitions!,
-                  imageWidth: _controller.value.previewSize!.width,
-                  imageHeight: _controller.value.previewSize!.height,
-                ),
+              child: BoundingBox(
+                _signLanguageRecognitions!,
+                controller!.value.previewSize!.height.toInt(),
+                controller!.value.previewSize!.width.toInt(),
+                screenH,
+                screenW,
               ),
             ),
-          FloatingButton(),
         ],
       ),
     );
