@@ -5,6 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'drawer.dart';
 import 'bounding_box.dart';
+import 'floatingButton.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
@@ -145,6 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
         ],
       ),
+      floatingActionButton: const FloatingButton(),
     );
   }
 }

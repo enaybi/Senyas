@@ -21,17 +21,17 @@ final List<LibraryContent> libraryContents = [
   LibraryContent(
     title: 'Family Tree',
     desc: 'Learn the signs for family members',
-    image: 'assets/classes/family_tree.svg',
+    image: 'assets/classes/familytree.svg',
   ),
   LibraryContent(
     title: 'Pointing Movements',
     desc: 'Learn how to use pointing gestures in sign language',
-    image: 'assets/classes/pointing_movements.svg',
+    image: 'assets/classes/pointingmovements.svg',
   ),
   LibraryContent(
     title: 'Basic Adjectives/Adverbs',
     desc: 'Learn basic adjectives and adverbs in sign language',
-    image: 'assets/classes/adjectives_adverbs.svg',
+    image: 'assets/classes/adjectivesadverbs.svg',
   ),
   LibraryContent(
     title: 'Time',
@@ -41,7 +41,7 @@ final List<LibraryContent> libraryContents = [
   LibraryContent(
     title: 'Sweeping Movements',
     desc: 'Learn how to use sweeping gestures in sign language',
-    image: 'assets/classes/sweeping_movements.svg',
+    image: 'assets/classes/sweepingmovements.svg',
   ),
   LibraryContent(
     title: 'Emotions',
@@ -51,7 +51,7 @@ final List<LibraryContent> libraryContents = [
   LibraryContent(
     title: 'Basic Questions',
     desc: 'Learn the sign language for basic questions',
-    image: 'assets/classes/basic_questions.svg',
+    image: 'assets/classes/basicquestions.svg',
   ),
   LibraryContent(
     title: 'Greetings',
@@ -61,12 +61,12 @@ final List<LibraryContent> libraryContents = [
   LibraryContent(
     title: 'Survival Words',
     desc: 'Learn sign language survival words',
-    image: 'assets/classes/survival_words.svg',
+    image: 'assets/classes/survivalwords.svg',
   ),
   LibraryContent(
     title: 'Body Parts',
     desc: 'Learn the signs for body parts',
-    image: 'assets/classes/body_parts.svg',
+    image: 'assets/classes/bodyparts.svg',
   ),
   LibraryContent(
     title: 'Colors',

@@ -94,6 +94,7 @@ class LibraryScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                       right: 16.0,
                                       bottom: 100.0,
+                                      left: 16.0,
                                     ),
                                     child: GestureDetector(
                                       onTap: () {
