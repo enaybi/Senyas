@@ -86,11 +86,11 @@ class _HomeScreenState extends State<HomeScreen> {
       CameraImage image, int imgHeight, int imgWidth) async {
     List<dynamic>? recognitions = await Tflite.detectObjectOnFrame(
       bytesList: image.planes.map((plane) => plane.bytes).toList(),
-      threshold: 0.4,
+      threshold: 0.3, // Adjust the threshold value for object detection
       imageHeight: imgHeight,
       imageWidth: imgWidth,
-      imageMean: 127.5,
-      imageStd: 127.5,
+      imageMean: 0.0, // Adjust the imageMean value for normalization
+      imageStd: 1.0, // Adjust the imageStd value for normalization
       asynch: true,
       numResultsPerClass: 5,
     );

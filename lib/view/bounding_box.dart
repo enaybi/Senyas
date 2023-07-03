@@ -59,13 +59,26 @@ class BoundingBox extends StatelessWidget {
                 width: 3.0,
               ),
             ),
-            child: Text(
-              "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
-              style: TextStyle(
-                color: Color.fromRGBO(37, 213, 253, 1.0),
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Sign Language Gesture",
+                  style: TextStyle(
+                    color: Color.fromRGBO(37, 213, 253, 1.0),
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
+                  style: TextStyle(
+                    color: Color.fromRGBO(37, 213, 253, 1.0),
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
         );
