@@ -3,6 +3,8 @@ import 'package:camera/camera.dart';
 import 'package:senyas/view/home.dart';
 import 'package:senyas/view/onboarding_screen.dart';
 
+import 'service/dbHelper.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cameras = await availableCameras();
