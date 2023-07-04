@@ -23,7 +23,12 @@ class LibraryDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(category),
+        title: Text(
+          category,
+          style: TextStyle(
+            fontSize: 24.0,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: GridView.count(
