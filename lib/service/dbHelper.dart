@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-//import '../model/db_model.dart';
+import '../model/db_model.dart';
 
 Database? _database;
 
@@ -29,7 +29,7 @@ class DatabaseHelper {
       ''');
   }
 
-  Future _tableData(Database db, int version) async {
+  Future _tableData() async {
     final db = await database;
     await db.insert('''
       INSERT INTO FSL_table (imageCategory, imageName, imagePath)
@@ -68,13 +68,12 @@ class DatabaseHelper {
       ("Number", "7", "assets/classes_content/numbers/7.png"),
       ("Number", "8", "assets/classes_content/numbers/8.png"),
       ("Number", "9", "assets/classes_content/numbers/9.png"),
-      ("Number", "10", "assets/classes_content/numbers/10.png");
-      ''');
+      ("Number", "10", "assets/classes_content/numbers/10.png");''');
   }
 
-  Future _fetchAllData(Database db, int version) async {
-    final db = await openDatabase('FSLDB.db');
-    return await db.query('FSL_table');
+  Future _fetchAllData() async {
+    final db = await database;
+    final dbResult = await db.query('FSL_table');
   }
 
   /*Future _fetchAlphabethData(Database db, int version) async {
