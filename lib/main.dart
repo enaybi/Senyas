@@ -7,6 +7,7 @@ import 'service/dbHelper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //await DatabaseHelper().instance.database;
   final cameras = await availableCameras();
   // cameras.first refers to the back camera, cameras.last refers to the front camera
   final firstCamera = cameras.last;

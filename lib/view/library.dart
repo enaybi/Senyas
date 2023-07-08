@@ -8,14 +8,15 @@ class ScreenSample extends StatelessWidget {
   ScreenSample({super.key});
 
   final dbHelper = DatabaseHelper();
-  List<Map<String, dynamic>> data = await dbHelper._fetchAllData('FSL_table');
+  //final fetchData = _fetchAllData('FSL_table');
+  //List<Map<String, dynamic>> data = await dbHelper._fetchAllData('FSL_table');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('SQLite Data')),
       body: FutureBuilder<List<Map<String, dynamic>>>(
-        future: dbHelper._fetchAllData('FSL_table'),
+        // future: dbHelper._fetchAllData('FSL_table'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return CircularProgressIndicator();
