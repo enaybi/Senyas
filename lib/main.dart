@@ -5,19 +5,18 @@ import 'package:senyas/view/onboarding_screen.dart';
 
 import 'service/dbHelper.dart';
 
+List<CameraDescription> cameras = List.empty();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await DatabaseHelper().instance.database;
-  final cameras = await availableCameras();
-  // cameras.first refers to the back camera, cameras.last refers to the front camera
-  final firstCamera = cameras.last;
-  runApp(MyApp(camera: firstCamera));
+  cameras = await availableCameras();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final CameraDescription camera;
 
-  const MyApp({Key? key, required this.camera}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => OnboardingScreen(),
-        '/home': (context) => HomeScreen(camera: camera),
+        '/home': (context) => HomeScreen(cameras: cameras),
       },
       debugShowCheckedModeBanner: false,
     );
