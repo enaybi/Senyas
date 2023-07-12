@@ -4,9 +4,26 @@ class FSL_Class {
   final String imageName;
   final String imagePath;
 
-  const FSL_Class(
-      {required this.imageCategory,
-      required this.imageName,
-      required this.imagePath,
-      required this.id});
+  const FSL_Class({
+    required this.id,
+    required this.imageCategory,
+    required this.imageName,
+    required this.imagePath,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'imageCategory': imageCategory,
+      'imageName': imageName,
+      'imagePath': imagePath,
+    };
+  }
+
+  @override
+  String toString() {
+    return 'FSL_Class{id: $id, imageCategory: $imageCategory, imageName: $imageName, imagePath: $imagePath}';
+  }
 }
+
+
