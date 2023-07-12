@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:senyas/view/home.dart';
 import 'package:senyas/view/onboarding_screen.dart';
-
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart';
 import 'service/dbHelper.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //await DatabaseHelper().instance.database;
+  final database = openDatabase(
+    join(await getDatabasesPath(), 'fsl_database.db'),
+    onCreate: (db, version) {
+      return db.execute(
+          'CREATE TABLE IF NOT EXIST fsl_table(id INTEGER PRIMARY KEY, imageCategory TEXT, imageName TEXT, imagePath TEXT)');
+    },
+    version: 1,
+  );
   final cameras = await availableCameras();
   // cameras.first refers to the back camera, cameras.last refers to the front camera
   final firstCamera = cameras.last;
