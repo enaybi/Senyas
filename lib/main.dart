@@ -6,16 +6,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'service/dbHelper.dart';
 
+List<CameraDescription> cameras = List.empty();
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'fsl_database.db'),
-    onCreate: (db, version) {
-      return db.execute(
-          'CREATE TABLE IF NOT EXIST fsl_table(id INTEGER PRIMARY KEY, imageCategory TEXT, imageName TEXT, imagePath TEXT)');
-    },
-    version: 1,
-  );
+  //await DatabaseHelper().instance.database;
   final cameras = await availableCameras();
   // cameras.first refers to the back camera, cameras.last refers to the front camera
   final firstCamera = cameras.last;
@@ -23,9 +18,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final CameraDescription camera;
 
-  const MyApp({Key? key, required this.camera}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => OnboardingScreen(),
-        '/home': (context) => HomeScreen(camera: camera),
+        '/home': (context) => HomeScreen(cameras: cameras),
       },
       debugShowCheckedModeBanner: false,
     );
