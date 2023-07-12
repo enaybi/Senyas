@@ -15,13 +15,13 @@ Future<void> main() async {
     join(await getDatabasesPath(), 'fsl_database.db'),
     onCreate: (db, version) {
       return db.execute(
-        'CREATE TABLE IF NOT EXIST fsl_table(id INTEGER PRIMARY KEY, imageCategory TEXT, imageName TEXT, imagePath TEXT)',
+        'CREATE TABLE fsl_table(id INTEGER PRIMARY KEY, imageCategory TEXT, imageName TEXT, imagePath TEXT)',
       );
     },
     version: 1,
   );
 
-  Future<void> insert_data(List<Map<String, dynamic>> data) async {
+  Future<void> insertdata(List<Map<String, dynamic>> data) async {
     final db = await database;
     await db.transaction((txn) async {
       for (var row in data) {
@@ -51,7 +51,7 @@ Future<void> main() async {
     },
   ];
 
-  Future<List<FSL_Class>> fetch_data() async {
+  Future<List<FSL_Class>> fetchdata() async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('fsl_table');
     return List.generate(maps.length, (i) {
@@ -63,8 +63,10 @@ Future<void> main() async {
     });
   }
 
-  await insert_data(dataList);
-  await fetch_data();
+  await insertdata(dataList);
+  await fetchdata();
+
+  print(await fetchdata());
 
   //await DatabaseHelper().instance.database;
   cameras = await availableCameras();
