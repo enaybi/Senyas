@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:senyas/view/chatpad.dart';
 import 'package:senyas/view/library_screen.dart';
 import 'package:senyas/view/look_screen.dart';
+import '../main.dart';
 
 class FloatingButton extends StatelessWidget {
   const FloatingButton({Key? key}) : super(key: key);
@@ -77,3 +78,4 @@ class FloatingButton extends StatelessWidget {
     );
   }
 }
+

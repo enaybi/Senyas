@@ -11,64 +11,6 @@ List<CameraDescription> cameras = List.empty();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'fsl_database.db'),
-    onCreate: (db, version) {
-      return db.execute(
-        'CREATE TABLE fsl_table(id INTEGER PRIMARY KEY, imageCategory TEXT, imageName TEXT, imagePath TEXT)',
-      );
-    },
-    version: 1,
-  );
-
-  Future<void> insertdata(List<Map<String, dynamic>> data) async {
-    final db = await database;
-    await db.transaction((txn) async {
-      for (var row in data) {
-        await txn.insert('fsl_table', row);
-      }
-    });
-  }
-
-  final List<Map<String, dynamic>> dataList = [
-    {
-      'id': 0,
-      'imageCategory': 'Alphabeth',
-      'imageName': 'A',
-      'imagePath': 'assets/classes_content/Alphabeths/A.png'
-    },
-    {
-      'id': 1,
-      'imageCategory': 'Alphabeth',
-      'imageName': 'B',
-      'imagePath': 'assets/classes_content/Alphabeths/B.png'
-    },
-    {
-      'id': 2,
-      'imageCategory': 'Alphabeth',
-      'imageName': 'C',
-      'imagePath': 'assets/classes_content/Alphabeths/C.png'
-    },
-  ];
-
-  Future<List<FSL_Class>> fetchdata() async {
-    final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('fsl_table');
-    return List.generate(maps.length, (i) {
-      return FSL_Class(
-          id: maps[i]['id'],
-          imageCategory: maps[i]['imageCategory'],
-          imageName: maps[i]['imageName'],
-          imagePath: maps[i]['imagePath']);
-    });
-  }
-
-  await insertdata(dataList);
-  await fetchdata();
-
-  print(await fetchdata());
-
-  //await DatabaseHelper().instance.database;
   cameras = await availableCameras();
   runApp(MyApp());
 }
