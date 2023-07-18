@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import '../model/db_model.dart';
@@ -27,30 +25,264 @@ class DatabaseHelper {
         imageName TEXT NOT NULL,
         imagePath TEXT NOT NULL)
       ''');
-
-    await db.insert('fsl_table', {
-      'imagecategory': 'Alphabeth',
-      'imagename': 'A',
-      'imagepath': 'assets/classes_content/Alphabets/A.png',
-    });
-    await db.insert('fsl_table', {
-      'imagecategory': 'Alphabeth',
-      'imagename': 'B',
-      'imagepath': 'assets/classes_content/Alphabets/B.png',
-    });
-    await db.insert('fsl_table', {
-      'imagecategory': 'Number',
-      'imagename': '1',
-      'imagepath': 'assets/classes_content/Numbers/1.png',
-    });
-  }
-    
   }
 
-  Future _fetchAllData() async {
-    final db = await openDatabase('FSLDB.db');
-    final dbResult = await db.query('fsl_table');
+  Future<void> insertdata(List<Map<String, dynamic>> data) async {
+    final db = await database;
+    await db.transaction((txn) async {
+      for (var row in data) {
+        await txn.insert('fsl_table', row);
+      }
+    });
   }
+  final List<Map<String, dynamic>> dataList = [
+    {
+      'id': 0,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'A',
+      'imagePath': 'assets/classes_content/Alphabeths/A.png'
+    },
+    {
+      'id': 1,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'B',
+      'imagePath': 'assets/classes_content/Alphabeths/B.png'
+    },
+    {
+      'id': 2,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'C',
+      'imagePath': 'assets/classes_content/Alphabeths/C.png'
+    },
+    {
+      'id': 3,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'D',
+      'imagePath': 'assets/classes_content/Alphabeths/D.png'
+    },
+    {
+      'id': 4,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'E',
+      'imagePath': 'assets/classes_content/Alphabeths/E.png'
+    },
+    {
+      'id': 5,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'F',
+      'imagePath': 'assets/classes_content/Alphabeths/F.png'
+    },
+    {
+      'id': 6,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'G',
+      'imagePath': 'assets/classes_content/Alphabeths/G.png'
+    },
+    {
+      'id': 7,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'H',
+      'imagePath': 'assets/classes_content/Alphabeths/H.png'
+    },
+    {
+      'id': 8,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'I',
+      'imagePath': 'assets/classes_content/Alphabeths/I.png'
+    },
+    {
+      'id': 9,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'J',
+      'imagePath': 'assets/classes_content/Alphabeths/J.png'
+    },
+    {
+      'id': 10,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'K',
+      'imagePath': 'assets/classes_content/Alphabeths/K.png'
+    },
+    {
+      'id': 11,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'L',
+      'imagePath': 'assets/classes_content/Alphabeths/L.png'
+    },
+    {
+      'id': 12,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'M',
+      'imagePath': 'assets/classes_content/Alphabeths/M.png'
+    },
+    {
+      'id': 13,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'N',
+      'imagePath': 'assets/classes_content/Alphabeths/N.png'
+    },
+    {
+      'id': 14,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'O',
+      'imagePath': 'assets/classes_content/Alphabeths/O.png'
+    },
+    {
+      'id': 15,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'P',
+      'imagePath': 'assets/classes_content/Alphabeths/P.png'
+    },
+    {
+      'id': 16,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'Q',
+      'imagePath': 'assets/classes_content/Alphabeths/Q.png'
+    },
+    {
+      'id': 17,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'R',
+      'imagePath': 'assets/classes_content/Alphabeths/R.png'
+    },
+    {
+      'id': 18,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'S',
+      'imagePath': 'assets/classes_content/Alphabeths/S.png'
+    },
+    {
+      'id': 19,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'T',
+      'imagePath': 'assets/classes_content/Alphabeths/T.png'
+    },
+    {
+      'id': 20,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'U',
+      'imagePath': 'assets/classes_content/Alphabeths/U.png'
+    },
+    {
+      'id': 21,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'V',
+      'imagePath': 'assets/classes_content/Alphabeths/V.png'
+    },
+    {
+      'id': 22,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'W',
+      'imagePath': 'assets/classes_content/Alphabeths/W.png'
+    },
+    {
+      'id': 23,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'X',
+      'imagePath': 'assets/classes_content/Alphabeths/X.png'
+    },
+    {
+      'id': 24,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'Y',
+      'imagePath': 'assets/classes_content/Alphabeths/Y.png'
+    },
+    {
+      'id': 25,
+      'imageCategory': 'Alphabeth',
+      'imageName': 'Z',
+      'imagePath': 'assets/classes_content/Alphabeths/Z.png'
+    },
+    {
+      'id': 26,
+      'imageCategory': 'Number',
+      'imageName': '1',
+      'imagePath': 'assets/classes_content/Numbers/1.png'
+    },
+    {
+      'id': 27,
+      'imageCategory': 'Number',
+      'imageName': '2',
+      'imagePath': 'assets/classes_content/Numbers/2.png'
+    },
+    {
+      'id': 28,
+      'imageCategory': 'Number',
+      'imageName': '3',
+      'imagePath': 'assets/classes_content/Numbers/3.png'
+    },
+    {
+      'id': 29,
+      'imageCategory': 'Number',
+      'imageName': '4',
+      'imagePath': 'assets/classes_content/Numbers/4.png'
+    },
+    {
+      'id': 30,
+      'imageCategory': 'Number',
+      'imageName': '5',
+      'imagePath': 'assets/classes_content/Numbers/5.png'
+    },
+    {
+      'id': 31,
+      'imageCategory': 'Number',
+      'imageName': '6',
+      'imagePath': 'assets/classes_content/Numbers/6.png'
+    },
+    {
+      'id': 32,
+      'imageCategory': 'Number',
+      'imageName': '7',
+      'imagePath': 'assets/classes_content/Numbers/7.png'
+    },
+    {
+      'id': 33,
+      'imageCategory': 'Number',
+      'imageName': '8',
+      'imagePath': 'assets/classes_content/Numbers/8.png'
+    },
+    {
+      'id': 34,
+      'imageCategory': 'Number',
+      'imageName': '9',
+      'imagePath': 'assets/classes_content/Numbers/9.png'
+    },
+    {
+      'id': 35,
+      'imageCategory': 'Number',
+      'imageName': '10',
+      'imagePath': 'assets/classes_content/Numbers/10.png'
+    },
+    {
+      'id': 36,
+      'imageCategory': 'Number',
+      'imageName': '1',
+      'imagePath': 'assets/classes_content/Numbers/1.png'
+    },
+  ];
+
+  Future<List<FSL_Class>> fetchdata() async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('fsl_table');
+    return List.generate(maps.length, (i) {
+      return FSL_Class(
+          id: maps[i]['id'],
+          imageCategory: maps[i]['imageCategory'],
+          imageName: maps[i]['imageName'],
+          imagePath: maps[i]['imagePath']);
+    });
+  }
+
+  Future<void> searchdata() async {
+    final db = await database;
+    final List<Map<String, dynamic>> searchResult =
+        await db.rawQuery('SELECT * FROM fsl_table WHERE imageName=? ');
+  }
+
+}
+
+
+
+  
 
   /*Future _fetchAlphabethData(Database db, int version) async {
     final db = await database;
