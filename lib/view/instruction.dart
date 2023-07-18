@@ -7,133 +7,299 @@ class InstructionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 127, 216, 189),
-        title: const Text('Instruction',
-            style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.white)),
+        title: const Text(
+          'User Instruction',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            const Text(
-              'How to use the app:',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
+        child: Container(
+          width: double.infinity,
+          child: ListView(
+            children: [
+              const Text(
+                'Welcome to Senyas!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '1. Click the green button after loading the screen.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        '2. You are now directed to the homepage camera frame. In order to accurately detect the FSL, place the camera on a well-lit environment with the user\'s hand showing just like this:',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
+              const SizedBox(height: 16),
+              const Text(
+                'This user instruction guide will help you navigate through the various features and functionalities of the app. Let\'s get started!',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '1. Onboarding Screen:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-                SvgPicture.asset(
-                  'assets/green.svg',
-                  width: 100,
-                  height: 100,
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/onboardingscreen.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'When you open the Senyas app for the first time, you will be directed to the onboarding screen.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'The onboarding screen consists of three screens that provide information about Senyas.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'At the bottom of each screen, you will find two options: "Skip" and "Next."',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'If you want to skip the onboarding screens and proceed to the homepage, tap on the "Skip" button.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '2. Camera Access Permission:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                SvgPicture.asset(
-                  'assets/mainscreen.svg',
-                  width: 200,
-                  height: 200,
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Before being directed to the homepage, Senyas will request permission to access your device\'s camera.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Granting camera access is necessary for utilizing the app\'s features effectively.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Once you allow access, you will be directed to the Senyas homepage.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/access.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '3. Homepage Navigation:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '3. If a green box appeared and showed the words, it means it can detect the hand sign language.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 16),
-                      Text(
-                        '4. Press the 3-line icon to see the library, user instructions, and about us.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        '- Library: where you can find different FSL categories.',
-                        style: TextStyle(fontSize: 16, color: Colors.green),
-                      ),
-                      Text(
-                        '- About us: information about the developers.',
-                        style: TextStyle(fontSize: 16, color: Colors.green),
-                      ),
-                    ],
-                  ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Upon reaching the homepage, you will find a floating navigation bar at the bottom of the screen.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'This navigation bar consists of three icons: sign language icon, camera icon, and message icon.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/navbar.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '4. Sign Language Search:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                const Expanded(
-                  child: Text(
-                    '5. Press the circular arrows to change the camera from front to back and vice-versa.',
-                    style: TextStyle(fontSize: 16),
-                  ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'To search for a Filipino sign language, tap on the sign language icon (represented by a hand sign).',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'This will take you to the search feature, where you can input keywords or phrases to find the corresponding sign.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Use this feature to learn and explore different sign language translations.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '5. Homepage Return:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-                SvgPicture.asset(
-                  'assets/rotate.svg',
-                  width: 100,
-                  height: 100,
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'If you wish to return to the homepage from any section of the app, tap on the camera icon.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'This will take you back to the homepage, allowing you to access other features and functionalities.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '6. Chatpad Access:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/navbar.svg',
-                        width: double.infinity,
-                        height: 180,
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        '6. Press the sign language icon when you want to search for a Filipino sign language.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        '7. Press the camera icon if you want to go back to the homepage.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        '8. Press the message icon to navigate to the chatpad.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'To access the chatpad feature, tap on the message icon (represented by a speech bubble).',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'This will navigate you to the chatpad, where you can communicate with other Senyas app users.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '7. Drawer Menu:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'In the upper-left corner of the screen, you will find a drawer icon (usually represented by three horizontal lines).',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Tapping on the drawer icon will open a menu with three shortcut options: library, user instructions, and about page.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/drawer.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '8. Library:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'The library section provides additional resources related to sign language.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/sign.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '9. User Instruction:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              const Text(
+                'The user instructions section offers guidance and support on using the Senyas app.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/userinstruction.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                '16. About:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              const Text(
+                'The about page provides information about the app, its developers, and any other relevant details.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 16),
+              LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+                  return SvgPicture.asset(
+                    'assets/aboutus.svg',
+                    width: constraints.maxWidth,
+                  );
+                },
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'That\'s it!',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'You are now equipped with the necessary knowledge to navigate and utilize the Senyas application effectively.',
+                style: TextStyle(fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Enjoy learning and communicating through Filipino sign language!',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
         ),
       ),
     );

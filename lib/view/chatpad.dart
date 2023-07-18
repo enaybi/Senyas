@@ -44,7 +44,7 @@ class Chatpad extends StatelessWidget {
           keyboardType: TextInputType.multiline,
           style: const TextStyle(
             fontFamily: 'Courier New',
-            fontSize: 16,
+            fontSize: 20,
           ),
           decoration: const InputDecoration(
             hintText: 'Start typing...',
