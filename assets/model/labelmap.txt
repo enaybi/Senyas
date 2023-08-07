@@ -1,4 +1,3 @@
-Baby/Sanggol 
-Brother/Kuya 
-Mother/Nanay 
-Sister/Ate
+Baby/Sanggol
+I/Ako
+Yes/Oo

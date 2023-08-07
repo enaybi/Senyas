@@ -47,6 +47,7 @@ dependencies:
   tflite:
     git:
       url: https://github.com/geniusqwerty12/flutter_tflite
+  tflite_flutter: ^0.10.1
 
 
 flutter_native_splash:

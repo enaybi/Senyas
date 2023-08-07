@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:tflite_flutter/tflite_flutter.dart';
 
 class BoundingBox extends StatelessWidget {
   final List<dynamic> results;
@@ -63,15 +64,7 @@ class BoundingBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Sign Language Gesture",
-                  style: TextStyle(
-                    color: Color.fromRGBO(37, 213, 253, 1.0),
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
+                  "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
                   style: TextStyle(
                     color: Color.fromRGBO(37, 213, 253, 1.0),
                     fontSize: 14.0,
