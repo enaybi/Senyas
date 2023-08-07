@@ -17,7 +17,7 @@ List<OnboardingContents> contents = [
     desc: "Experience real-time sign language recognition and communication.",
   ),
   OnboardingContents(
-    title: " Learn and Communicate in Sign Language",
+    title: " Learn and Communicate in \n Sign Language",
     image: "assets/screen_02.png",
     desc:
         "Access a comprehensive library of sign language gestures and phrases.",

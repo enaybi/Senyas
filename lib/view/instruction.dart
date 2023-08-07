@@ -261,7 +261,7 @@ class InstructionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const Text(
-                '16. About:',
+                '10. About:',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
