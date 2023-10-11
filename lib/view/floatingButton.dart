@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:senyas/view/chatpad.dart';
+import 'package:senyas/view/home.dart';
 import 'package:senyas/view/library_screen.dart';
 import 'package:senyas/view/look_screen.dart';
+import 'package:senyas/view/searchscreen.dart';
 import '../main.dart';
 
 class FloatingButton extends StatelessWidget {
@@ -30,7 +32,7 @@ class FloatingButton extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LookScreen()),
+                    MaterialPageRoute(builder: (context) => SearchScreen()),
                   );
                 },
                 backgroundColor: Colors.transparent,
@@ -45,7 +47,7 @@ class FloatingButton extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LibraryScreen()),
+                    MaterialPageRoute(builder: (context) => HomeScreen(cameras: cameras)),
                   );
                 },
                 backgroundColor: Colors.transparent,
