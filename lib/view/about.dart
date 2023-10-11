@@ -82,12 +82,6 @@ class AboutUsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               _buildDeveloperItem(
-                'Laurenze Mae Erribal',
-                'Developer',
-                'assets/developer2.jpg',
-              ),
-              const SizedBox(height: 20),
-              _buildDeveloperItem(
                 'Tracy Marie Andrea Madresta',
                 'Developer',
                 'assets/developer3.jpg',
@@ -101,7 +95,7 @@ class AboutUsScreen extends StatelessWidget {
               const SizedBox(height: 20),
               _buildDeveloperItem(
                 'Niv Joy Solis',
-                'UI/UX Designer',
+                'Developer',
                 'assets/developer5.jpg',
               ),
             ],
