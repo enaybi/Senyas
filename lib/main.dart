@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:senyas/model/db_model.dart';
 import 'package:senyas/view/home.dart';
 import 'package:senyas/view/onboarding_screen.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'service/dbHelper.dart';
+import 'service/database_helper.dart';
 
 List<CameraDescription> cameras = List.empty();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
+  
+  final dbHelper = DatabaseHelper();
+   await dbHelper.insertData();
   runApp(MyApp());
 }
 
