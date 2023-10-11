@@ -17,7 +17,6 @@ import 'package:flutter/material.dart'
         Widget;
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:senyas/view/about.dart';
 import 'package:senyas/view/instruction.dart';
 import 'package:senyas/view/library_screen.dart';
