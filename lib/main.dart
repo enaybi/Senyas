@@ -11,9 +11,9 @@ List<CameraDescription> cameras = List.empty();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
-  
+
   final dbHelper = DatabaseHelper();
-   await dbHelper.insertData();
+  await dbHelper.insertData();
   runApp(MyApp());
 }
 

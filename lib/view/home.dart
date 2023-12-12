@@ -8,8 +8,6 @@ import 'drawer.dart';
 import 'bounding_box.dart';
 import 'floatingButton.dart';
 
-typedef void Callback(List<dynamic> list, int h, int w);
-
 class HomeScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
 
@@ -20,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<dynamic>? _recognitions = List.empty();
+  List<dynamic>? _recognitions = [];
   int _imageHeight = 0;
   int _imageWidth = 0;
 
@@ -32,10 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /*
-  The set recognitions function assigns the values of recognitions, imageHeight and width to the variables defined here as callback
-  */
-  setRecognitions(recognitions, imageHeight, imageWidth) {
+  setRecognitions(List<dynamic> recognitions, int imageHeight, int imageWidth) {
     setState(() {
       _recognitions = recognitions;
       _imageHeight = imageHeight;
@@ -62,11 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       drawer: const AppDrawer(),
+      endDrawer: null, // Disable the end drawer
       body: Stack(
         children: [
           CameraFeed(widget.cameras, setRecognitions),
           BoundingBox(
-            _recognitions! == null ? [] : _recognitions!,
+            _recognitions ?? [],
             math.max(_imageHeight, _imageWidth),
             math.min(_imageHeight, _imageWidth),
             screen.height,
@@ -74,7 +70,16 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      floatingActionButton: const FloatingButton(),
+      floatingActionButton: FloatingButton(
+        onCameraButtonPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeScreen(cameras: widget.cameras),
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:tflite_flutter/tflite_flutter.dart';
 
+import 'globals.dart';
+
 class BoundingBox extends StatelessWidget {
   final List<dynamic> results;
   final int previewH;
@@ -47,6 +49,10 @@ class BoundingBox extends StatelessWidget {
           if (_y < difH / 2) h -= (difH / 2 - _y) * scaleH;
         }
 
+        MyGlobals.sharedText = "${re["detectedClass"]}";
+
+        print(MyGlobals.sharedText);
+
         return Positioned(
           left: math.max(0, x),
           top: math.max(0, y),
@@ -54,12 +60,6 @@ class BoundingBox extends StatelessWidget {
           height: h,
           child: Container(
             padding: EdgeInsets.only(top: 5.0, left: 5.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Color.fromRGBO(37, 213, 253, 1.0),
-                width: 3.0,
-              ),
-            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -67,7 +67,7 @@ class BoundingBox extends StatelessWidget {
                   "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
                   style: TextStyle(
                     color: Color.fromRGBO(37, 213, 253, 1.0),
-                    fontSize: 14.0,
+                    fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -78,8 +78,34 @@ class BoundingBox extends StatelessWidget {
       }).toList();
     }
 
+    // Add the centered text box at the bottom of the screen
+    Widget centeredTextBox() {
+      return Positioned(
+        bottom: 100,
+        left: 0,
+        right: 0,
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          color: Colors.transparent,
+          child: Center(
+            child: Text(
+              MyGlobals.sharedText,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Stack(
-      children: _renderBox(),
+      children: [
+        ..._renderBox(),
+        centeredTextBox(),
+      ],
     );
   }
 }

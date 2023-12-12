@@ -81,6 +81,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/developers/
     - assets/model/
     - assets/classes/
     - assets/classes_content/alphabets/

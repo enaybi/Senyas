@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:senyas/view/chatpad.dart';
 import 'package:senyas/view/home.dart';
 import 'package:senyas/view/library_screen.dart';
-import 'package:senyas/view/look_screen.dart';
 import 'package:senyas/view/searchscreen.dart';
-import '../main.dart';
 
 class FloatingButton extends StatelessWidget {
-  const FloatingButton({Key? key}) : super(key: key);
+  final VoidCallback onCameraButtonPressed;
+
+  const FloatingButton({Key? key, required this.onCameraButtonPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        width: 250,
+        width: 200,
         height: 60,
-        margin: EdgeInsets.only(bottom: 20),
-        decoration: const BoxDecoration(
+        margin: EdgeInsets.only(bottom: 20, left: 50, right: 20),
+        decoration: BoxDecoration(
           color: Colors.grey,
           borderRadius: BorderRadius.all(Radius.circular(30.0)),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               FloatingActionButton(
                 onPressed: () {
@@ -44,12 +44,7 @@ class FloatingButton extends StatelessWidget {
                 ),
               ),
               FloatingActionButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen(cameras: cameras)),
-                  );
-                },
+                onPressed: onCameraButtonPressed,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 child: SvgPicture.asset(
@@ -80,4 +75,3 @@ class FloatingButton extends StatelessWidget {
     );
   }
 }
-
