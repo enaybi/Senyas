@@ -9,7 +9,7 @@ class LibraryContent {
 
 final List<LibraryContent> libraryContents = [
   LibraryContent(
-    title: 'Alphabets',
+    title: 'Alphabet',
     desc: 'Learn the sign language alphabets',
     image: 'assets/classes/alphabets.svg',
   ),

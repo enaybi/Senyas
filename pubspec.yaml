@@ -84,8 +84,15 @@ flutter:
     - assets/developers/
     - assets/model/
     - assets/classes/
-    - assets/classes_content/alphabets/
-    - assets/classes_content/numbers/
+    - assets/classes_content/Alphabets/
+    - assets/classes_content/BasicAdjective/
+    - assets/classes_content/BasicQuestions/
+    - assets/classes_content/FamilyTree/
+    - assets/classes_content/Greetings/
+    - assets/classes_content/Numbers/
+    - assets/classes_content/Pointing/
+    - assets/classes_content/Survival words/
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

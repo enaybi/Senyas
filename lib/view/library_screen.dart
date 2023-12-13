@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:senyas/view/searchscreen.dart';
 import 'chatpad.dart';
 import 'drawer.dart';
 import 'library_content.dart';
@@ -83,7 +84,7 @@ class LibraryScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => LookScreen()),
+                      MaterialPageRoute(builder: (context) => SearchScreen()),
                     );
                   },
                   backgroundColor: Colors.transparent,
@@ -168,10 +169,7 @@ class LearningCoursesContainer extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(
-                        right: 16.0,
-                        bottom: 100.0,
-                        left: 16.0,
-                      ),
+                          right: 16.0, bottom: 100.0, left: 16.0, top: 20.0),
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(

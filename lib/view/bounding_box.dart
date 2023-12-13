@@ -60,6 +60,12 @@ class BoundingBox extends StatelessWidget {
           height: h,
           child: Container(
             padding: EdgeInsets.only(top: 5.0, left: 5.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Color.fromRGBO(37, 213, 253, 1.0),
+                width: 3.0,
+              ),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -79,4 +79,22 @@ class DatabaseHelper {
     );
   }
 
+  Future<List<FslClass>> searchCategory(String keyword) async {
+    print("starting code");
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.rawQuery(
+      'SELECT * FROM fsl_table WHERE imageCategory LIKE ?',
+      ['%$keyword%'],
+    );
+    print("debugging");
+    print(maps);
+    return List.generate(maps.length, (i) {
+      return FslClass(
+        id: maps[i]['id'],
+        imageCategory: maps[i]['imageCategory'],
+        imageName: maps[i]['imageName'],
+        imagePath: maps[i]['imagePath'],
+      );
+    });
+  }
 }
