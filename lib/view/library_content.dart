@@ -9,7 +9,7 @@ class LibraryContent {
 
 final List<LibraryContent> libraryContents = [
   LibraryContent(
-    title: 'Alphabet',
+    title: 'Alphabets',
     desc: 'Learn the sign language alphabets',
     image: 'assets/classes/alphabets.svg',
   ),
@@ -34,16 +34,6 @@ final List<LibraryContent> libraryContents = [
     image: 'assets/classes/adjectivesadverbs.svg',
   ),
   LibraryContent(
-    title: 'Time',
-    desc: 'Learn how to express time in sign language',
-    image: 'assets/classes/time.svg',
-  ),
-  LibraryContent(
-    title: 'Sweeping Movements',
-    desc: 'Learn how to use sweeping gestures in sign language',
-    image: 'assets/classes/sweepingmovements.svg',
-  ),
-  LibraryContent(
     title: 'Emotions',
     desc: 'Learn how to express emotions in sign language',
     image: 'assets/classes/emotions.svg',
@@ -62,11 +52,6 @@ final List<LibraryContent> libraryContents = [
     title: 'Survival Words',
     desc: 'Learn sign language survival words',
     image: 'assets/classes/survivalwords.svg',
-  ),
-  LibraryContent(
-    title: 'Body Parts',
-    desc: 'Learn the signs for body parts',
-    image: 'assets/classes/bodyparts.svg',
   ),
   LibraryContent(
     title: 'Colors',
