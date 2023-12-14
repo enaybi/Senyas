@@ -24,8 +24,8 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
   void _performSearch() async {
     final dbHelper = DatabaseHelper();
     final results = await dbHelper.searchCategory(widget.category);
-    print("help");
-    print(results);
+    // print("help");
+    // print(results);
     setState(() {
       searchResults = results;
     });
@@ -44,7 +44,7 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
       ),
       body: GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        // physics: NeverScrollableScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,

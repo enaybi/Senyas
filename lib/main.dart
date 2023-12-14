@@ -14,7 +14,7 @@ Future<void> main() async {
 
   final dbHelper = DatabaseHelper();
   await dbHelper.insertData();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

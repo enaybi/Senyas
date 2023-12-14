@@ -84,6 +84,7 @@ flutter:
     - assets/developers/
     - assets/model/
     - assets/classes/
+    - assets/classes_content/
     - assets/classes_content/Alphabets/
     - assets/classes_content/BasicAdjective/
     - assets/classes_content/BasicQuestions/
@@ -91,7 +92,8 @@ flutter:
     - assets/classes_content/Greetings/
     - assets/classes_content/Numbers/
     - assets/classes_content/Pointing/
-    - assets/classes_content/Survival words/
+    - assets/classes_content/SurvivalWords/
+    # - assets/classes_content/Alphabets/A.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

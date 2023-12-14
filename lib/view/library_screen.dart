@@ -176,7 +176,7 @@ class LearningCoursesContainer extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => LibraryDetailsScreen(
-                                category: libraryContents[index].title,
+                                category: libraryContents[index].category,
                               ),
                             ),
                           );
