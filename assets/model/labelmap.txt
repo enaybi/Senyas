@@ -1,48 +1,30 @@
- Afternoon/Hapon
- Baby/Sanggol
- Bad/Masama
- Brother/Kuya
- Danger/Panganib
- Difficult/Mahirap
- Dont Understand/Hindi Maintindihan
- Easy/Madali
- Emergency/Emerhensya
- Evening/Gabi
- Family/Pamilya
- Fast/Mabilis 
- Father/Ama 
- Finish/Tapos 
- Friend/Kaibigan 
- Go/Alis 
- Good/Mabuti/Magandang 
- High/Mataas 
- How/Paano 
- I/Ako 
- Low/Mababa 
- Morning/Umaga 
- Mother/Ina 
- New/Bago 
- No/Hindi 
- Noon/Tanghali 
- Old/Luma/Matanda 
- Please/Pakiusap 
- Run/Takbo 
- Sister/Ate 
- Slow/Mabagal 
- Sorry/Paumanhin 
- Stay/Manatili 
- Stop/Huminto 
- Thank You/Salamat 
- They/Sila 
- This/Ito 
- Understand/Maintindihan 
- Us/Kami 
- Wait/Hintay 
- We/Tayo 
- Welcome/Walang Anuman 
- What/Ano 
- When/Kailan 
- Where/Saan 
- Who/Sino 
- Why/Bakit 
- Yes/Oo 
+Afternoon/Hapon
+Baby/Sanggol
+Bad/Masama
+Brother/Kuya
+Danger/Panganib
+Difficult/Mahirap
+Easy/Madali
+Evening/Gabi
+Fast/Mabilis
+Father/Ama
+Good/Mabuti/Magandang
+High/Mataas
+How/Paano
+Low/Mababa
+Morning/Umaga
+Mother/Ina
+No/Hindi
+Noon/Tanghali
+Run/Takbo
+Sister/Ate
+Stop/Huminto
+Thank You/Salamat
+Wait/Hintay
+Welcome/Walang Anuman
+What/Ano
+When/Kailan
+Where/Saan
+Who/Sino
+Why/Bakit
+Yes/Oo
