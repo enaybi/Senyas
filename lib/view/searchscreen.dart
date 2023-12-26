@@ -12,12 +12,14 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchController = TextEditingController();
   List<FslClass> searchResults = [];
+  List<FslClass> allData = [];
   FslClass? selectedResult;
 
   @override
   void initState() {
     super.initState();
     _searchController.addListener(_onSearchTextChanged);
+    _loadAllData();
   }
 
   void _onSearchTextChanged() {
@@ -33,6 +35,14 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
+  void _loadAllData() async {
+    final dbHelper = DatabaseHelper();
+    final allDataList = await dbHelper.fetchData(); // Add a method to fetch all data
+    setState(() {
+      allData = allDataList;
+    });
+  }
+
   void _showImageDialog(FslClass result) {
     showDialog(
       context: context,
@@ -43,7 +53,7 @@ class _SearchScreenState extends State<SearchScreen> {
             children: [
               Image.asset(
                 result.imagePath,
-                width: 200, 
+                width: 200,
                 height: 200,
                 fit: BoxFit.cover,
               ),
@@ -76,6 +86,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<FslClass> displayList = _searchController.text.isNotEmpty
+        ? searchResults
+        : allData;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 127, 216, 189),
@@ -102,25 +116,46 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: searchResults.length,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8.0,
+                mainAxisSpacing: 8.0,
+              ),
+              itemCount: displayList.length,
               itemBuilder: (context, index) {
-                final result = searchResults[index];
+                final result = displayList[index];
                 return GestureDetector(
                   onTap: () {
                     _showImageDialog(result);
                   },
                   child: Card(
                     elevation: 4,
-                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: ListTile(
-                      title: Text(result.imageName),
-                      subtitle: Text(result.imageCategory),
-                      leading: Image.asset(
-                        result.imagePath,
-                        width: 64,
-                        height: 64,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Image.asset(
+                            result.imagePath,
+                            width: double.infinity,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            result.imageName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(result.imageCategory),
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -132,3 +167,4 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
