@@ -42,6 +42,7 @@ dependencies:
   image_picker: ^0.7.0
   sqflite: ^2.2.8+4
   path: any
+  image: ^3.0.1
   
 
   tflite:

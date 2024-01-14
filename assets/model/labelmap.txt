@@ -13,7 +13,7 @@ High/Mataas
 How/Paano
 Low/Mababa
 Morning/Umaga
-Mother/Ina
+Mother/Ina 
 No/Hindi
 Noon/Tanghali
 Run/Takbo
