@@ -35,6 +35,7 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 127, 216, 189),
         title: Text(
           "Library Category",
           style: TextStyle(

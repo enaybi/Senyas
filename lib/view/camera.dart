@@ -50,7 +50,7 @@ class _CameraFeedState extends State<CameraFeed> {
               imageMean: 127.5,
               imageStd: 127.5,
               numResultsPerClass: 5,
-              threshold: 0.5,
+              threshold: 0.3,
             ).then((recognitions) {
               print(recognitions);
               /*

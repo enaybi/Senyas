@@ -13,7 +13,7 @@ Future<void> main() async {
   cameras = await availableCameras();
 
   final dbHelper = DatabaseHelper();
-  await dbHelper.insertData();
+  await dbHelper.insertData(); 
   runApp(const MyApp());
 }
 
