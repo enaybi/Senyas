@@ -51,8 +51,8 @@ class _CameraFeedState extends State<CameraFeed> {
             Tflite.detectObjectOnFrame(
               bytesList: [Uint8List.fromList(resizedBytes)],
               model: "SSDMobileNet",
-              imageHeight: img.height,
-              imageWidth: img.width,
+              imageHeight: 320,
+              imageWidth: 320,
               imageMean: 127.5,
               imageStd: 127.5,
               numResultsPerClass: 5,

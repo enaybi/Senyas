@@ -189,4 +189,8 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
 //       ),
 //     );
 //   }
+<<<<<<< HEAD
 // }
+=======
+// }
+>>>>>>> 1023a79a347a2ec4e08d4a13c48d07f736cf66b4
