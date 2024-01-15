@@ -49,7 +49,7 @@ class _CameraFeedState extends State<CameraFeed> {
             List<int> resizedBytes = image.encodePng(resizedImage);
 
             Tflite.detectObjectOnFrame(
-              }).toList(),
+              bytesList: [Uint8List.fromList(resizedBytes)],
               model: "SSDMobileNet",
               imageHeight: 320,
               imageWidth: 320,
