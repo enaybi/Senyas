@@ -42,8 +42,6 @@ dependencies:
   image_picker: ^0.7.0
   sqflite: ^2.2.8+4
   path: any
-  insta_image_viewer: ^1.0.2
-  photo_view: ^0.14.0
   
 
   tflite:

@@ -112,12 +112,6 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
   }
 }
 
-
-
-
-
-
-
 // class LibraryDetailsScreen extends StatelessWidget {
 //   final String category;
 

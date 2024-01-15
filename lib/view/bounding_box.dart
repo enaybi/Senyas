@@ -84,8 +84,14 @@ class BoundingBox extends StatelessWidget {
       }).toList();
     }
 
-    // Add the centered text box at the bottom of the screen
     Widget centeredTextBox() {
+      // Check if there are any results before updating sharedText
+      // if (results.isNotEmpty) {
+      //   MyGlobals.sharedText = "${results.first["detectedClass"]}";
+      // } else {
+      //   MyGlobals.sharedText = ""; // No detection, set empty string
+      // }
+
       return Positioned(
         bottom: 100,
         left: 0,
@@ -97,7 +103,7 @@ class BoundingBox extends StatelessWidget {
             child: Text(
               MyGlobals.sharedText,
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -107,6 +113,7 @@ class BoundingBox extends StatelessWidget {
       );
     }
 
+
     return Stack(
       children: [
         ..._renderBox(),
@@ -115,3 +122,4 @@ class BoundingBox extends StatelessWidget {
     );
   }
 }
+
