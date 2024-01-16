@@ -32,7 +32,7 @@ class _CameraFeedState extends State<CameraFeed> {
     } else {
       controller = new CameraController(
         widget.cameras[0],
-        ResolutionPreset.high,
+        ResolutionPreset.medium,
       );
       controller!.initialize().then((_) {
         if (!mounted) {
@@ -44,19 +44,21 @@ class _CameraFeedState extends State<CameraFeed> {
           if (!isDetecting) {
             isDetecting = true;
 
-            final resizedImage =
-                image.copyResize(img as image.Image, width: 320, height: 320);
-            List<int> resizedBytes = image.encodePng(resizedImage);
+            // final resizedImage =
+            //     image.copyResize(img as image.Image, width: 320, height: 320);
+            // List<int> resizedBytes = image.encodePng(resizedImage);
 
             Tflite.detectObjectOnFrame(
-              bytesList: [Uint8List.fromList(resizedBytes)],
+              bytesList: img.planes.map((plane) {
+                return plane.bytes;
+              }).toList(),
               model: "SSDMobileNet",
-              imageHeight: 320,
-              imageWidth: 320,
+              imageHeight: img.height,
+              imageWidth: img.width,
               imageMean: 127.5,
               imageStd: 127.5,
               numResultsPerClass: 5,
-              threshold: 0.3,
+              threshold: 0.5,
             ).then((recognitions) {
               print(recognitions);
 
@@ -93,20 +95,13 @@ class _CameraFeedState extends State<CameraFeed> {
     var screenRatio = screenH / screenW;
     var previewRatio = previewH / previewW;
 
-    // return OverflowBox(
-    //   maxHeight:
-    //       screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
-    //   maxWidth:
-    //       screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
-    //   child: CameraPreview(controller!),
-    // );
-    return Center(
-      child: Container(
-        child: SizedOverflowBox(
-          size: Size(320, 320),
-          child: CameraPreview(controller!),
-        ),
-      ),
+    return OverflowBox(
+      maxHeight:
+          screenRatio > previewRatio ? screenH : screenW / previewW * previewH,
+      maxWidth:
+          screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
+      child: CameraPreview(controller!),
     );
+   
   }
 }
