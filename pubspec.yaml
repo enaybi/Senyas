@@ -42,7 +42,10 @@ dependencies:
   image_picker: ^0.7.0
   sqflite: ^2.2.8+4
   path: any
+<<<<<<< Updated upstream
   image: ^3.0.1
+=======
+>>>>>>> Stashed changes
   insta_image_viewer: ^1.0.2
   photo_view: ^0.14.0
   
