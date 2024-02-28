@@ -36,7 +36,7 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 127, 216, 189),
-        title: Text(
+        title: const Text(
           "Library Category",
           style: TextStyle(
             fontSize: 24.0,
@@ -45,7 +45,7 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
       ),
       body: GridView.builder(
         shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
@@ -73,8 +73,8 @@ class _LibraryDetailsScreenState extends State<LibraryDetailsScreen> {
                             maxScale: PhotoViewComputedScale.covered * 2,
                           );
                         },
-                        scrollPhysics: BouncingScrollPhysics(),
-                        backgroundDecoration: BoxDecoration(
+                        scrollPhysics: const BouncingScrollPhysics(),
+                        backgroundDecoration: const BoxDecoration(
                           color: Colors.black,
                         ),
                         pageController: PageController(),

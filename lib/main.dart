@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:senyas/view/home.dart';
 import 'package:senyas/view/onboarding_screen.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import 'service/database_helper.dart';
 
 List<CameraDescription> cameras = List.empty();
@@ -13,7 +11,7 @@ Future<void> main() async {
   cameras = await availableCameras();
 
   final dbHelper = DatabaseHelper();
-  await dbHelper.insertData(); 
+  await dbHelper.insertData();
   runApp(const MyApp());
 }
 
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => OnboardingScreen(),
+        '/': (context) => const OnboardingScreen(),
         '/home': (context) => HomeScreen(cameras: cameras),
       },
       debugShowCheckedModeBanner: false,

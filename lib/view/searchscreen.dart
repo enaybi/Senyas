@@ -37,7 +37,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _loadAllData() async {
     final dbHelper = DatabaseHelper();
-    final allDataList = await dbHelper.fetchData(); // Add a method to fetch all data
+    final allDataList =
+        await dbHelper.fetchData(); // Add a method to fetch all data
     setState(() {
       allData = allDataList;
     });
@@ -61,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   result.imageName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
@@ -75,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Close'),
+                child: const Text('Close'),
               ),
             ],
           ),
@@ -86,9 +87,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<FslClass> displayList = _searchController.text.isNotEmpty
-        ? searchResults
-        : allData;
+    List<FslClass> displayList =
+        _searchController.text.isNotEmpty ? searchResults : allData;
 
     return Scaffold(
       appBar: AppBar(
@@ -117,7 +117,7 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           Expanded(
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
@@ -145,7 +145,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             result.imageName,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
                             ),
@@ -167,4 +167,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-

@@ -5,7 +5,6 @@ import 'chatpad.dart';
 import 'drawer.dart';
 import 'library_content.dart';
 import 'library_details_screen.dart';
-import 'look_screen.dart';
 
 class LibraryScreen extends StatelessWidget {
   @override
@@ -70,7 +69,8 @@ class LibraryScreen extends StatelessWidget {
         child: Container(
           width: 200,
           height: 60,
-          margin: EdgeInsets.only(bottom: 20, left: 50, right: 20, top: 20),
+          margin:
+              const EdgeInsets.only(bottom: 20, left: 50, right: 20, top: 20),
           decoration: const BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -84,7 +84,8 @@ class LibraryScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SearchScreen()),
+                      MaterialPageRoute(
+                          builder: (context) => const SearchScreen()),
                     );
                   },
                   backgroundColor: Colors.transparent,

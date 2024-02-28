@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:tflite_flutter/tflite_flutter.dart';
 
 import 'globals.dart';
 
@@ -11,7 +10,7 @@ class BoundingBox extends StatelessWidget {
   final double screenH;
   final double screenW;
 
-  BoundingBox(
+  const BoundingBox(
     this.results,
     this.previewH,
     this.previewW,
@@ -59,10 +58,10 @@ class BoundingBox extends StatelessWidget {
           width: w,
           height: h,
           child: Container(
-            padding: EdgeInsets.only(top: 5.0, left: 5.0),
+            padding: const EdgeInsets.only(top: 5.0, left: 5.0),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromRGBO(37, 213, 253, 1.0),
+                color: const Color.fromRGBO(37, 213, 253, 1.0),
                 width: 3.0,
               ),
             ),
@@ -71,7 +70,7 @@ class BoundingBox extends StatelessWidget {
               children: [
                 Text(
                   "${re["detectedClass"]} ${(re["confidenceInClass"] * 100).toStringAsFixed(0)}%",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color.fromRGBO(37, 213, 253, 1.0),
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
@@ -97,12 +96,12 @@ class BoundingBox extends StatelessWidget {
         left: 0,
         right: 0,
         child: Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           color: Colors.transparent,
           child: Center(
             child: Text(
               MyGlobals.sharedText,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
@@ -113,7 +112,6 @@ class BoundingBox extends StatelessWidget {
       );
     }
 
-
     return Stack(
       children: [
         ..._renderBox(),
@@ -122,4 +120,3 @@ class BoundingBox extends StatelessWidget {
     );
   }
 }
-

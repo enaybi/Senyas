@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class InstructionScreen extends StatelessWidget {
+class InstructionScreen extends StatefulWidget {
+  const InstructionScreen({super.key});
+
+  @override
+  _InstructionScreenState createState() => _InstructionScreenState();
+}
+
+class _InstructionScreenState extends State<InstructionScreen> {
   final List<Map<String, dynamic>> instructionPages = [
     {
       'imagePath': 'assets/userinstructions/loading_screen.svg',
@@ -82,12 +89,25 @@ class InstructionScreen extends StatelessWidget {
     },
   ];
 
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.round();
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 127, 216, 189),
-        title: Text(
+        title: const Text(
           'User Instruction',
           style: TextStyle(
             fontSize: 30,
@@ -96,39 +116,73 @@ class InstructionScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: PageView.builder(
-        itemCount: instructionPages.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
+      body: Stack(
+        children: [
+          PageView.builder(
+            controller: _pageController,
+            itemCount: instructionPages.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      instructionPages[index]['imagePath'],
+                      width: MediaQuery.of(context).size.width * 0.8,
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      instructionPages[index]['title'],
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      instructionPages[index]['subtitle'],
+                      style: const TextStyle(
+                        fontSize: 15,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          Positioned(
+            bottom: 20.0,
+            left: 0,
+            right: 0,
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  instructionPages[index]['imagePath'],
-                  width: MediaQuery.of(context).size.width * 0.8,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  instructionPages[index]['title'],
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  instructionPages[index]['subtitle'],
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+              children: _buildDots(),
             ),
-          );
-        },
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<Widget> _buildDots() {
+    List<Widget> dots = [];
+    for (int i = 0; i < instructionPages.length; i++) {
+      dots.add(_buildDot(i == _currentPage));
+    }
+    return dots;
+  }
+
+  Widget _buildDot(bool isActive) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      width: isActive ? 10 : 6,
+      height: 6,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: isActive ? Colors.blueAccent : Colors.grey,
       ),
     );
   }

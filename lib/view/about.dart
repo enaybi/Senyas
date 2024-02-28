@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AboutUsScreen extends StatelessWidget {
-  final Color logoBlue = Color.fromARGB(255, 127, 216, 189);
+  final Color logoBlue = const Color.fromARGB(255, 127, 216, 189);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: logoBlue,
-        title: Text(
+        title: const Text(
           'About Us',
           style: TextStyle(
             fontSize: 30,
@@ -30,7 +30,7 @@ class AboutUsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Text(
+              const Text(
                 'MEET THE TEAM BEHIND SENYAS',
                 style: TextStyle(
                   fontSize: 20,

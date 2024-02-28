@@ -1,10 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:tflite/tflite.dart';
 import 'dart:math' as math;
-import 'package:image/image.dart' as image;
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
@@ -102,6 +99,5 @@ class _CameraFeedState extends State<CameraFeed> {
           screenRatio > previewRatio ? screenH / previewH * previewW : screenW,
       child: CameraPreview(controller!),
     );
-   
   }
 }

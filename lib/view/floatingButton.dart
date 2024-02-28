@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:senyas/view/chatpad.dart';
-import 'package:senyas/view/home.dart';
-import 'package:senyas/view/library_screen.dart';
 import 'package:senyas/view/searchscreen.dart';
 
 class FloatingButton extends StatelessWidget {
@@ -18,7 +16,7 @@ class FloatingButton extends StatelessWidget {
       child: Container(
         width: 200,
         height: 60,
-        margin: EdgeInsets.only(bottom: 20, left: 50, right: 20),
+        margin: const EdgeInsets.only(bottom: 20, left: 50, right: 20),
         decoration: BoxDecoration(
           color: Colors.grey,
           borderRadius: BorderRadius.all(Radius.circular(30.0)),
