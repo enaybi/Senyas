@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
       drawer: const AppDrawer(),
-      endDrawer: null, // Disable the end drawer
+      endDrawer: null, 
       body: Stack(
         children: [
           CameraFeed(widget.cameras, setRecognitions),
