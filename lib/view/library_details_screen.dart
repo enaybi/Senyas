@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'library_details_data.dart';
 import 'package:senyas/service/database_helper.dart';
 import 'package:senyas/service/data_model.dart';
 
