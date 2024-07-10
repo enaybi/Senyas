@@ -605,10 +605,11 @@ packages:
   tflite:
     dependency: "direct main"
     description:
-      name: tflite
-      sha256: "661f8942a0e8ca05fedf554cc6f9cc95f526d0e4588d1665e0eb4d29e25e69b1"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: a301247b2e0989faa76250169f6a9a4aebd50398
+      url: "https://github.com/geniusqwerty12/flutter_tflite.git"
+    source: git
     version: "1.1.2"
   tflite_flutter:
     dependency: "direct main"

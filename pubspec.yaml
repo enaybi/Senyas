@@ -48,8 +48,8 @@ dependencies:
 
   tflite:
     git:
-      url: https://github.com/geniusqwerty12/flutter_tflite
-      ref: master
+      url: https://github.com/geniusqwerty12/flutter_tflite.git
+      # ref: master
     # path : D:/#Thesis/flutter_tflite
 
   tflite_flutter: ^0.10.1
