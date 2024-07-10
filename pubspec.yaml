@@ -29,9 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  #tflite: ^1.1.2
-  flutter_localizations: 
-    sdk: flutter 
+  # tflite: ^1.1.2
+  flutter_localizations:
+    sdk: flutter
   intl: ^0.19.0
   shared_preferences: ^2.0.13
   camera: ^0.9.4+5
@@ -45,16 +45,14 @@ dependencies:
   image: ^3.0.1
   insta_image_viewer: ^1.0.2
   photo_view: ^0.14.0
-  
 
   tflite:
     git:
       url: https://github.com/geniusqwerty12/flutter_tflite
       ref: master
     # path : D:/#Thesis/flutter_tflite
-  
-  tflite_flutter: ^0.10.1
 
+  tflite_flutter: ^0.10.1
 
 flutter_native_splash:
   color: "#ffffff"
